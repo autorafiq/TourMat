@@ -80,7 +80,7 @@
             android:layout_weight=".5"
             android:gravity="end"
             android:padding="10dp"
-            android:text="New here?"
+            android:text=" are you New here?"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="15sp" />
