@@ -97,7 +97,8 @@
         android:text="Save Tour Info"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:onClick="saveInfo"/>
 
     <TextView
 

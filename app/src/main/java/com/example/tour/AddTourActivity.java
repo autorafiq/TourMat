@@ -2,6 +2,7 @@ package com.example.tour;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -56,7 +57,9 @@ public class AddTourActivity extends AppCompatActivity implements View.OnClickLi
     }
 
 
-
+    public void saveInfo(View view) {
+        startActivity(new Intent(AddTourActivity.this,ShowActivity.class));
+    }
 }
 
 
