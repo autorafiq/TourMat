@@ -54,7 +54,9 @@
         android:padding="16dp"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textColorHint="@color/white" />
+        android:textColorHint="@color/white"
+
+        android:focusable="false"/>
     <EditText
         android:id="@+id/endDateAddTourET"
         android:layout_width="match_parent"
@@ -67,7 +69,9 @@
         android:padding="16dp"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textColorHint="@color/white" />
+        android:textColorHint="@color/white"
+
+        android:focusable="false"/>
 
     <EditText
         android:id="@+id/budgetAddTourET"
