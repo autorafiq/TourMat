@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.widget.DatePicker;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class DatePickerDialogFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
@@ -16,6 +18,7 @@ public class DatePickerDialogFragment extends DialogFragment implements DatePick
     public static final int FLAG_END_DATE = 1;
     private String date="";
     private String date1="";
+    private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
 
     private int flag = 0;
@@ -42,7 +45,8 @@ public class DatePickerDialogFragment extends DialogFragment implements DatePick
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month, dayOfMonth);
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        //calendar.getTimeInMillis();
+
         if (flag == FLAG_START_DATE) {
             date = format.format(calendar.getTime());
 
@@ -55,7 +59,24 @@ public class DatePickerDialogFragment extends DialogFragment implements DatePick
     public String getA(){
         return this.date = date;
     }
-    public String getA1(){
-        return this.date1 = date1;
+    public String getA1(){ return this.date1 = date1; }
+    public Long getStartDateLongValue(){
+        Date dateL = new Date();
+        try {
+            dateL=format.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return dateL.getTime();
+    }
+
+    public Long getEndDateLongValue(){
+        Date dateL1 = new Date();
+        try {
+            dateL1=format.parse(date1);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return dateL1.getTime();
     }
 }
