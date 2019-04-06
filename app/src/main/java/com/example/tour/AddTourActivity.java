@@ -14,10 +14,12 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.tour.Data.Data;
 import com.example.tour.Data.MainData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -34,45 +36,44 @@ public class AddTourActivity extends AppCompatActivity implements View.OnClickLi
     private Calendar myCalendar;
     private DatePickerDialogFragment mDatePickerDialogFragment;
     private String uid;
-    private String tourName, tourDescription, budget;
+    private String tourName, tourDescription;
     private long startDate, endDate;
-    private float budgetD;
+    private String budget;
+    private FirebaseAuth mAuth;
 
     // Write to the database
     private FirebaseDatabase database;
     private DatabaseReference myRef;
-    private MainData mainData;
+    private Data data;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_tour);
-        tourNameET = findViewById(R.id.tourNameAddTourET);
-        tourDescriptionET = findViewById(R.id.tourDescriptionAddTourET);
+        tourNameET=findViewById(R.id.tourNameAddTourET);
+        tourDescriptionET=findViewById(R.id.tourDescriptionAddTourET);
+        tourBudgetET=findViewById(R.id.budgetAddTourET);
+
         dateStartET = findViewById(R.id.startDateAddTourET);
         dateEndET = findViewById(R.id.endDateAddTourET);
-        tourBudgetET = findViewById(R.id.budgetAddTourET);
+
+        tourName=tourNameET.getText().toString();
+        tourDescription=tourDescriptionET.getText().toString();
+        budget=tourBudgetET.getText().toString();
+
         saveTourInfoBtn = findViewById(R.id.saveTourInfoAddTourBtn);
 
         mDatePickerDialogFragment = new DatePickerDialogFragment();
-
-        tourName = tourNameET.getText().toString();
-        tourDescription = tourDescriptionET.getText().toString();
-        budget = tourBudgetET.getText().toString();
-        budgetD = 0;
-
-
+        /*budgetD = 0;
+        budgetD = Float.valueOf(budget);*/
         startDate = mDatePickerDialogFragment.getStartDateLongValue();
         endDate = mDatePickerDialogFragment.getEndDateLongValue();
-        uid = getIntent().getStringExtra("uid");
-        mainData = new MainData(uid, tourName, tourDescription, startDate, endDate, budgetD);
+
 
         dateStartET.setOnClickListener(this);
         dateEndET.setOnClickListener(this);
         saveTourInfoBtn.setOnClickListener(this);
-
-
     }
 
 
@@ -91,19 +92,21 @@ public class AddTourActivity extends AppCompatActivity implements View.OnClickLi
             mDatePickerDialogFragment.show(getSupportFragmentManager(), "datePicker");
 
         } else if (id == R.id.saveTourInfoAddTourBtn) {
-
+            mAuth = FirebaseAuth.getInstance();
+            String user = mAuth.getCurrentUser().getUid();
             // Write to the database
             database = FirebaseDatabase.getInstance();
-            myRef = database.getReference("tourUser").child("tourInfo");
+            myRef = database.getReference("tourUser").child(user);
+            uid = myRef.push().getKey();
 
+            data = new Data(uid, tourName, tourDescription, startDate, endDate, budget);
 
-            mainData.setUid(uid);
-            myRef.child(uid).setValue(mainData).addOnCompleteListener(new OnCompleteListener<Void>() {
+            myRef.child("event").child(uid).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
                         Toast.makeText(AddTourActivity.this, "Tour info saved successfully.", Toast.LENGTH_SHORT).show();
-                        finish();
+
                     } else {
                         Toast.makeText(AddTourActivity.this, "Tour info not save successfully.", Toast.LENGTH_SHORT).show();
                     }

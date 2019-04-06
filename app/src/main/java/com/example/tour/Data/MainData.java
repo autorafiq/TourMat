@@ -9,10 +9,6 @@ public class MainData {
     private String password;
     private double cellNumber;
 
-    private String tourName, tourDescription;
-    private long startDate, endDate;
-    private float budget;
-
 
     public MainData() {
     }
@@ -22,21 +18,11 @@ public class MainData {
         this.password = password;
     }
 
-    public MainData(String uid, String name, String email, String password, double cellNumber) {
+    public MainData(String uid, String name, String email, double cellNumber) {
         this.uid=uid;
         this.name = name;
         this.email = email;
-        this.password = password;
         this.cellNumber = cellNumber;
-    }
-
-    public MainData(String uid, String tourName, String tourDescription, long startDate, long endDate, float budget) {
-        this.uid = uid;
-        this.tourName = tourName;
-        this.tourDescription = tourDescription;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.budget = budget;
     }
 
 
@@ -61,23 +47,5 @@ public class MainData {
         this.uid = uid;
     }
 
-    public String getTourName() {
-        return tourName;
-    }
 
-    public String getTourDescription() {
-        return tourDescription;
-    }
-
-    public long getStartDate() {
-        return startDate;
-    }
-
-    public long getEndDate() {
-        return endDate;
-    }
-
-    public float getBudget() {
-        return budget;
-    }
 }

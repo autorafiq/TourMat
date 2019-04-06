@@ -77,8 +77,7 @@ public class Main2Activity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             uid = task.getResult().getUser().getUid();
-
-                            saveSingUpData(new MainData(uid, name, email, password, Double.valueOf(cellNumber)));
+                            saveSingUpData(new MainData(uid, name, email, Double.valueOf(cellNumber)));
                         } else {
                             Toast.makeText(Main2Activity.this, "Account not create successfully.", Toast.LENGTH_SHORT).show();
                         }
@@ -90,7 +89,7 @@ public class Main2Activity extends AppCompatActivity {
     private void saveSingUpData(MainData mainData) {
         // Write to the database
         database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("tourUser").child("userInfo");
+        myRef = database.getReference("tourUser");
         //uid = myRef.push().getKey();
 
         myRef.child(uid).setValue(mainData).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -98,9 +97,10 @@ public class Main2Activity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(Main2Activity.this, "User info saved successfully.", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Main2Activity.this,AddTourActivity.class);
+                    /*Intent intent = new Intent(Main2Activity.this,AddTourActivity.class);
                     intent.putExtra("uid",uid);
-                    startActivity(intent);
+                    startActivity(intent);*/
+
 
                 } else {
                     Toast.makeText(Main2Activity.this, "User info not save successfully.", Toast.LENGTH_SHORT).show();
