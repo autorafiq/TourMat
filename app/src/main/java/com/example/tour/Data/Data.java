@@ -3,20 +3,21 @@ package com.example.tour.Data;
 public class Data {
     private String tourName, tourDescription;
     private long startDate, endDate;
-    private String budget;
+    private double budget;
     private String tourUid;
 
     public Data() {
     }
 
-    public Data(String tourUid, String tourName, String tourDescription, long startDate, long endDate, String budget) {
-        this.tourUid = tourUid;
+    public Data(String tourName, String tourDescription, long startDate, long endDate, double budget) {
         this.tourName = tourName;
         this.tourDescription = tourDescription;
         this.startDate = startDate;
         this.endDate = endDate;
         this.budget = budget;
     }
+
+
 
     public String getTourName() {
         return tourName;
@@ -34,8 +35,12 @@ public class Data {
         return endDate;
     }
 
-    public String getBudget() {
+    public double getBudget() {
         return budget;
+    }
+
+    public String getTourUid() {
+        return tourUid;
     }
 
     public void setTourUid(String tourUid) {

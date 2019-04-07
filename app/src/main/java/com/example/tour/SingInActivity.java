@@ -35,12 +35,7 @@ public class SingInActivity extends AppCompatActivity {
         singInBtn = findViewById(R.id.singInBtn);
 
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-        if (user!=null){
-            startActivity(new Intent(SingInActivity.this, AddTourActivity.class));
-        }else {
 
-        }
 
         singUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +78,7 @@ public class SingInActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         Toast.makeText(SingInActivity.this, "Login successful.", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(),ShowActivity.class));
 
                     } else {
                         Toast.makeText(SingInActivity.this, "Please SingUp.", Toast.LENGTH_SHORT).show();

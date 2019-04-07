@@ -29,99 +29,93 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class AddTourActivity extends AppCompatActivity implements View.OnClickListener {
-    private EditText tourNameET, tourDescriptionET, dateStartET, dateEndET, tourBudgetET;
+public class AddTourActivity extends AppCompatActivity {
+    private EditText tourNameET, tourDescriptionET, startDateET, endDateET, budgetET, testET;
     private Button saveTourInfoBtn;
-
-    private Calendar myCalendar;
     private DatePickerDialogFragment mDatePickerDialogFragment;
-    private String uid;
-    private String tourName, tourDescription;
+    private String uid, tourName, tourDescription;
     private long startDate, endDate;
-    private String budget;
+    private double budget;
     private FirebaseAuth mAuth;
-
     // Write to the database
     private FirebaseDatabase database;
     private DatabaseReference myRef;
-    private Data data;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_tour);
-        tourNameET=findViewById(R.id.tourNameAddTourET);
-        tourDescriptionET=findViewById(R.id.tourDescriptionAddTourET);
-        tourBudgetET=findViewById(R.id.budgetAddTourET);
-
-        dateStartET = findViewById(R.id.startDateAddTourET);
-        dateEndET = findViewById(R.id.endDateAddTourET);
-
-        tourName=tourNameET.getText().toString();
-        tourDescription=tourDescriptionET.getText().toString();
-        budget=tourBudgetET.getText().toString();
-
-        saveTourInfoBtn = findViewById(R.id.saveTourInfoAddTourBtn);
-
+        mAuth = FirebaseAuth.getInstance();
         mDatePickerDialogFragment = new DatePickerDialogFragment();
-        /*budgetD = 0;
-        budgetD = Float.valueOf(budget);*/
-        startDate = mDatePickerDialogFragment.getStartDateLongValue();
-        endDate = mDatePickerDialogFragment.getEndDateLongValue();
-
-
-        dateStartET.setOnClickListener(this);
-        dateEndET.setOnClickListener(this);
-        saveTourInfoBtn.setOnClickListener(this);
-    }
-
-
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
-        if (id == R.id.startDateAddTourET) {
-            mDatePickerDialogFragment.setFlag(DatePickerDialogFragment.FLAG_START_DATE);
-            dateStartET.setText(mDatePickerDialogFragment.getA());
-            mDatePickerDialogFragment.show(getSupportFragmentManager(), "datePicker");
-
-
-        } else if (id == R.id.endDateAddTourET) {
-            mDatePickerDialogFragment.setFlag(DatePickerDialogFragment.FLAG_END_DATE);
-            dateEndET.setText(mDatePickerDialogFragment.getA1());
-            mDatePickerDialogFragment.show(getSupportFragmentManager(), "datePicker");
-
-        } else if (id == R.id.saveTourInfoAddTourBtn) {
-            mAuth = FirebaseAuth.getInstance();
-            String user = mAuth.getCurrentUser().getUid();
-            // Write to the database
-            database = FirebaseDatabase.getInstance();
-            myRef = database.getReference("tourUser").child(user);
-            uid = myRef.push().getKey();
-
-            data = new Data(uid, tourName, tourDescription, startDate, endDate, budget);
-
-            myRef.child("event").child(uid).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(AddTourActivity.this, "Tour info saved successfully.", Toast.LENGTH_SHORT).show();
-
-                    } else {
-                        Toast.makeText(AddTourActivity.this, "Tour info not save successfully.", Toast.LENGTH_SHORT).show();
-                    }
+        //init
+        tourNameET = findViewById(R.id.tourNameET);
+        tourDescriptionET = findViewById(R.id.tourDescriptionET);
+        startDateET = findViewById(R.id.startDateAddTourET);
+        endDateET = findViewById(R.id.endDateAddTourET);
+        budgetET = findViewById(R.id.tourBudgetET);
+        saveTourInfoBtn = findViewById(R.id.saveTourInfoAddTourBtn);
+        testET = findViewById(R.id.testET);
+        startDateET.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDatePickerDialogFragment.setFlag(mDatePickerDialogFragment.FLAG_START_DATE);
+                mDatePickerDialogFragment.show(getSupportFragmentManager(), "datepicker");
+                startDateET.setText(mDatePickerDialogFragment.getStartDate());
+            }
+        });
+        endDateET.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDatePickerDialogFragment.setFlag(mDatePickerDialogFragment.FLAG_END_DATE);
+                mDatePickerDialogFragment.show(getSupportFragmentManager(), "datepicker");
+                endDateET.setText(mDatePickerDialogFragment.getEndDate());
+            }
+        });
+        saveTourInfoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tourName = tourNameET.getText().toString();
+                tourDescription = tourDescriptionET.getText().toString();
+                budget = Double.valueOf(budgetET.getText().toString());
+                startDate = mDatePickerDialogFragment.getStartDateLongValue();
+                endDate = mDatePickerDialogFragment.getEndDateLongValue();
+                if (tourName.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Please enter your tour name.", Toast.LENGTH_SHORT).show();
+                } else if (tourDescription.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Please enter something about your tour.", Toast.LENGTH_SHORT).show();
+                } else if (budget == 0) {
+                    Toast.makeText(getApplicationContext(), "Please enter your budget.", Toast.LENGTH_SHORT).show();
+                } else if (startDate == 0 || endDate == 0) {
+                    Toast.makeText(getApplicationContext(), "Please enter your tour date range.", Toast.LENGTH_SHORT).show();
+                } else {
+                    saveTourInfo(new Data(tourName, tourDescription, startDate, endDate, budget));
                 }
-            });
-
-        }
-
-
+            }
+        });
     }
 
+    private void saveTourInfo(Data data) {
+        String user = mAuth.getCurrentUser().getUid();
+        // Write to the database
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("tourUser").child(user);
+        uid = myRef.push().getKey();
+        data.setTourUid(uid);
+        myRef.child("event").child(uid).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(AddTourActivity.this, "Tour info saved successfully.", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(),ShowActivity.class));
+                } else {
+                    Toast.makeText(AddTourActivity.this, "Tour info not save successfully.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
 }
-    /*public void saveInfo(View view) {
-        startActivity(new Intent(AddTourActivity.this, ShowActivity.class));
-    }
-}*/
+
+
+
 
 

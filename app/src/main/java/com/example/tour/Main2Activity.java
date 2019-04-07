@@ -67,7 +67,6 @@ public class Main2Activity extends AppCompatActivity {
             }
         });
     }
-
     private void createAccount(final String email, final String password) {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -83,9 +82,7 @@ public class Main2Activity extends AppCompatActivity {
                         }
                     }
                 });
-
     }
-
     private void saveSingUpData(MainData mainData) {
         // Write to the database
         database = FirebaseDatabase.getInstance();
@@ -97,11 +94,7 @@ public class Main2Activity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(Main2Activity.this, "User info saved successfully.", Toast.LENGTH_SHORT).show();
-                    /*Intent intent = new Intent(Main2Activity.this,AddTourActivity.class);
-                    intent.putExtra("uid",uid);
-                    startActivity(intent);*/
-
-
+                    startActivity(new Intent(Main2Activity.this,ShowActivity.class));
                 } else {
                     Toast.makeText(Main2Activity.this, "User info not save successfully.", Toast.LENGTH_SHORT).show();
                 }

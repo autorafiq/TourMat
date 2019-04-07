@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
     android:background="@color/back"
     android:gravity="center_horizontal|center_vertical"
+    android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".AddTourActivity">
+
     <EditText
-        android:id="@+id/tourNameAddTourET"
+        android:id="@+id/tourNameET"
+        android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:background="#111111"
-
         android:drawableLeft="@drawable/ic_directions_run_black_24dp"
         android:hint="Enter tour name here"
-        android:inputType="text"
         android:padding="16dp"
         android:singleLine="true"
         android:textAlignment="center"
@@ -27,15 +26,14 @@
         android:textColorHint="@color/white" />
 
     <EditText
-        android:id="@+id/tourDescriptionAddTourET"
+        android:id="@+id/tourDescriptionET"
+        android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:background="#111111"
-
         android:drawableLeft="@drawable/ic_wb_sunny_black_24dp"
         android:hint="Tour Description"
-        android:inputType="textEmailAddress"
         android:padding="16dp"
         android:singleLine="true"
         android:textAlignment="center"
@@ -49,14 +47,14 @@
         android:layout_marginBottom="10dp"
         android:background="#111111"
         android:drawableLeft="@drawable/ic_date_range_black_24dp"
+        android:focusable="false"
         android:hint="Tour Start Date"
         android:inputType="text"
         android:padding="16dp"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textColorHint="@color/white"
+        android:textColorHint="@color/white" />
 
-        android:focusable="false"/>
     <EditText
         android:id="@+id/endDateAddTourET"
         android:layout_width="match_parent"
@@ -64,24 +62,23 @@
         android:layout_marginBottom="10dp"
         android:background="#111111"
         android:drawableLeft="@drawable/ic_date_range_black_24dp"
+        android:focusable="false"
         android:hint="Tour End Date"
         android:inputType="text"
         android:padding="16dp"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textColorHint="@color/white"
-
-        android:focusable="false"/>
+        android:textColorHint="@color/white" />
 
     <EditText
-        android:id="@+id/budgetAddTourET"
+        android:id="@+id/tourBudgetET"
+        android:inputType="numberDecimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:background="#111111"
         android:drawableLeft="@drawable/ic_attach_money_black_24dp"
         android:hint="Budget"
-        android:inputType="number"
         android:padding="16dp"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
@@ -97,8 +94,7 @@
         android:text="Save Tour Info"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="20dp"
-        />
+        android:textSize="20dp" />
 
     <TextView
 
@@ -114,5 +110,9 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@color/white"></View>
+    <EditText
+        android:id="@+id/testET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

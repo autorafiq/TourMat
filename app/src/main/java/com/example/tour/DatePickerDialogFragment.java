@@ -19,6 +19,7 @@ public class DatePickerDialogFragment extends DialogFragment implements DatePick
     private String date="";
     private String date1="";
     private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    private SimpleDateFormat dateSDF = new SimpleDateFormat("dd/MM/yyyy");
 
 
     private int flag = 0;
@@ -56,10 +57,10 @@ public class DatePickerDialogFragment extends DialogFragment implements DatePick
         }
 
     }
-    public String getA(){
+    public String getStartDate(){
         return this.date = date;
     }
-    public String getA1(){ return this.date1 = date1; }
+    public String getEndDate(){ return this.date1 = date1; }
     public Long getStartDateLongValue(){
         Date dateL = new Date();
         try {
@@ -78,5 +79,9 @@ public class DatePickerDialogFragment extends DialogFragment implements DatePick
             e.printStackTrace();
         }
         return dateL1.getTime();
+    }
+
+    public String getDateFormate(long date){
+         return dateSDF.format(date);
     }
 }
