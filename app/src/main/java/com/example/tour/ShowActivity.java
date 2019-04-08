@@ -129,7 +129,8 @@ public class ShowActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replaceFragment(new DetailsFragment());
+                startActivity(new Intent(ShowActivity.this, AddTourActivity.class)); //Go back to home page
+                finish();
             }
         });
 
