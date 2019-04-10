@@ -33,7 +33,7 @@ public class ShowActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private DatabaseReference userRef;
-    private TourRecyclerView tourRecyclerViewAdapter;
+    private TourRecyclerViewAdapter tourRecyclerViewAdapter;
     private ArrayList<Data> dataList;
     private String user;
 
@@ -54,13 +54,13 @@ public class ShowActivity extends AppCompatActivity {
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        tourRecyclerViewAdapter = new TourRecyclerView(dataList, getApplicationContext());
+        tourRecyclerViewAdapter = new TourRecyclerViewAdapter(dataList, getApplicationContext());
         recyclerView.setAdapter(tourRecyclerViewAdapter);
         getFlottingButton();
     }
 
     private void getDataFromDatabase() {
-         userRef.addValueEventListener(new ValueEventListener() {
+        userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -137,13 +137,13 @@ public class ShowActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replaceFragment(new MemoriesFragment());
+                startActivity(new Intent(ShowActivity.this, AddMemoriesActivity.class));
             }
         });
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replaceFragment(new MoneyFragment());
+                startActivity(new Intent(ShowActivity.this, AddExpenseActivity.class));
             }
         });
         button4.setOnClickListener(new View.OnClickListener() {

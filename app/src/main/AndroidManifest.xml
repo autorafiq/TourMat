@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SingInActivity"></activity>
+        <activity android:name=".AddExpenseActivity"></activity>
+        <activity android:name=".AddMemoriesActivity" />
+        <activity android:name=".SingInActivity" />
         <activity android:name=".ShowActivity" />
         <activity android:name=".AddTourActivity" />
         <activity android:name=".ForgotPasswordActivity" />

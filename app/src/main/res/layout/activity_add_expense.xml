@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,22 +12,12 @@
     android:paddingBottom="16dp"
     android:paddingLeft="16dp"
     android:paddingTop="5dp"
-    tools:context=".ShowActivity"
-    android:weightSum="10"
-    >
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    tools:context=".AddExpenseActivity">
+    <FrameLayout
+        android:id="@+id/frameContainer"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="9"
-        >
+        android:layout_height="wrap_content">
 
-    </android.support.v7.widget.RecyclerView>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/white"></View>
-
+    </FrameLayout>
 
 </LinearLayout>
