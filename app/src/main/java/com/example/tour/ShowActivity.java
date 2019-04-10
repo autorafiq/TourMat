@@ -28,7 +28,7 @@ import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShowActivity extends AppCompatActivity {
+public class ShowActivity extends AppCompatActivity implements FragmentCommunication {
     private RecyclerView recyclerView;
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
@@ -54,7 +54,7 @@ public class ShowActivity extends AppCompatActivity {
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        tourRecyclerViewAdapter = new TourRecyclerViewAdapter(dataList, getApplicationContext());
+        tourRecyclerViewAdapter = new TourRecyclerViewAdapter(dataList, getApplicationContext(),this);
         recyclerView.setAdapter(tourRecyclerViewAdapter);
         getFlottingButton();
     }
@@ -155,6 +155,18 @@ public class ShowActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+    }
+
+    @Override
+    public void respond(String data) {
+        //Toast.makeText(this, ""+data, Toast.LENGTH_SHORT).show();
+        Bundle bundle = new Bundle();
+        bundle.putString("tourId", data);
+        // set Fragmentclass Arguments
+        MemoriesFragment fragobj = new MemoriesFragment();
+        fragobj.setArguments(bundle);
+
 
     }
 }

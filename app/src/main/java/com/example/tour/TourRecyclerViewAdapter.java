@@ -30,10 +30,12 @@ public class TourRecyclerViewAdapter extends RecyclerView.Adapter<TourRecyclerVi
     private List<Data> dataList;
     private DatePickerDialogFragment mDatePickerDialogFragment = new DatePickerDialogFragment();
     private FirebaseAuth mAuth;
+    FragmentCommunication fragmentCommunication;
 
-    public TourRecyclerViewAdapter(List<Data> dataList, Context context) {
+    public TourRecyclerViewAdapter(List<Data> dataList, Context context, FragmentCommunication fragmentCommunication) {
         this.dataList = dataList;
         this.context = context;
+        this.fragmentCommunication=fragmentCommunication;
     }
 
     @NonNull
@@ -56,27 +58,25 @@ public class TourRecyclerViewAdapter extends RecyclerView.Adapter<TourRecyclerVi
         viewHolder.binding.memoriesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Context context = v.getContext();
                 Intent intent = new Intent(context, AddMemoriesActivity.class);
                 intent.putExtra("tourUid", currentData.getTourUid());
                 //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
+
             }
+
         });
 
         viewHolder.binding.budgetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Context context = v.getContext();
-                /*Intent intent = new Intent(context, AddExpenseActivity.class);
-                intent.putExtra("tourUid", currentData.getTourUid());
-                //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);*/
+                String value= currentData.getTourUid();
+                fragmentCommunication.respond(value);
+                Intent intent = new Intent(context, AddMemoriesActivity.class);
 
-                MemoriesFragment memoriesFragment=new MemoriesFragment();
-                Bundle bundle=new Bundle();
-                bundle.putString("tourUid",currentData.getTourUid());
-                memoriesFragment.setArguments(bundle);
 
             }
         });

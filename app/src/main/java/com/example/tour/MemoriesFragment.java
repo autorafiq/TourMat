@@ -33,7 +33,8 @@ private RecyclerView imageRecyclerView;
 private ImageAdapter imageAdapter;
 private List<Image>  imageList;
 private DatabaseReference databaseReference;
-    Bundle arguments;
+
+//    Bundle arguments;
 
     public MemoriesFragment() {
         // Required empty public constructor
@@ -49,6 +50,9 @@ private DatabaseReference databaseReference;
         imageRecyclerView.setHasFixedSize(true);
         imageRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         imageList=new ArrayList<>();
+        /*//tourId
+        String tourId = getArguments().getString("tourId");*/
+
        /* String userId = mAuth.getCurrentUser().getUid();
         String eventId = getIntent().getStringExtra("tourUid");
         myRef = database.getReference("tourUser").child(userId).child("event").child(eventId);*/
@@ -68,7 +72,7 @@ private DatabaseReference databaseReference;
         return view;
     }
 
-    @Override
+    /*@Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         arguments = getArguments();
@@ -79,5 +83,5 @@ private DatabaseReference databaseReference;
             Toast.makeText(getActivity(), ""+name, Toast.LENGTH_SHORT).show();
 
             }
-    }
+    }*/
 }

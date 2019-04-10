@@ -43,6 +43,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
                 .fit().centerCrop().into(viewHolder.binding.cardImageViewId);
 
 
+
     }
 
     @Override
