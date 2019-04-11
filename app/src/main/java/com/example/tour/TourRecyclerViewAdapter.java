@@ -30,12 +30,12 @@ public class TourRecyclerViewAdapter extends RecyclerView.Adapter<TourRecyclerVi
     private List<Data> dataList;
     private DatePickerDialogFragment mDatePickerDialogFragment = new DatePickerDialogFragment();
     private FirebaseAuth mAuth;
-    FragmentCommunication fragmentCommunication;
+//    FragmentCommunication fragmentCommunication;
 
-    public TourRecyclerViewAdapter(List<Data> dataList, Context context, FragmentCommunication fragmentCommunication) {
+    public TourRecyclerViewAdapter(List<Data> dataList, Context context) {
         this.dataList = dataList;
         this.context = context;
-        this.fragmentCommunication=fragmentCommunication;
+//        this.fragmentCommunication=fragmentCommunication;
     }
 
     @NonNull
@@ -55,6 +55,13 @@ public class TourRecyclerViewAdapter extends RecyclerView.Adapter<TourRecyclerVi
         viewHolder.binding.endDateTV.setText(mDatePickerDialogFragment.getDateFormate(currentData.getEndDate()));
         viewHolder.binding.budgetTV.setText(String.valueOf(currentData.getBudget()));
 
+        viewHolder.binding.editBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Edit", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         viewHolder.binding.memoriesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,12 +79,15 @@ public class TourRecyclerViewAdapter extends RecyclerView.Adapter<TourRecyclerVi
         viewHolder.binding.budgetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Context context = v.getContext();
+                /*Context context = v.getContext();
                 String value= currentData.getTourUid();
                 fragmentCommunication.respond(value);
-                Intent intent = new Intent(context, AddMemoriesActivity.class);
-
-
+                Intent intent = new Intent(context, AddMemoriesActivity.class);*/
+                Context context = v.getContext();
+                Intent intent = new Intent(context, AddExpenseActivity.class);
+                intent.putExtra("tourUid", currentData.getTourUid());
+                //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
             }
         });
         viewHolder.binding.deleteBtn.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +96,7 @@ public class TourRecyclerViewAdapter extends RecyclerView.Adapter<TourRecyclerVi
                 Toast.makeText(context, "Deleted...", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 
     @Override

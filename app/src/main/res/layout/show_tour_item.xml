@@ -2,19 +2,22 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
 
         <LinearLayout
-
+            android:id="@+id/layoutId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/yellow"
             android:gravity="center_horizontal|center_vertical"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="16dp">
 
             <TextView
                 android:id="@+id/tourNameTV"
@@ -112,46 +115,59 @@
                 android:layout_height="2dp"
                 android:background="@color/white"></View>
 
-            <LinearLayout
-                android:layout_width="match_parent"
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layoutId"
+            android:background="@color/yellow"
+            android:orientation="horizontal"
+
+            >
+
+            <Button
+
+                android:id="@+id/editBtn"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_weight=".19"
+                android:text="Edit"
+                android:textStyle="bold"
+                android:textColor="@color/white" />
+            <Button
 
+                android:id="@+id/memoriesBtn"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".30"
+                android:text="memories"
+                android:textColor="#115173" />
 
-                <Button
+            <Button
+                android:id="@+id/budgetBtn"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".26"
+                android:text="expense"
+                android:textColor="#1c1259" />
 
-                    android:id="@+id/memoriesBtn"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".33"
-                    android:text="memories"
-                    android:textColor="#115173" />
-
-                <Button
-                    android:id="@+id/budgetBtn"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".34"
-                    android:text="expense"
-                    android:textColor="#1c1259" />
-
-                <Button
-                    android:id="@+id/deleteBtn"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".33"
-                    android:text="delete"
-                    android:textColor="#c40b13"/>
-
-            </LinearLayout>
-
+            <Button
+                android:id="@+id/deleteBtn"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:text="delete"
+                android:textColor="#c40b13"/>
 
         </LinearLayout>
 
 
-    </android.support.v7.widget.CardView>
+    </RelativeLayout>
 </layout>

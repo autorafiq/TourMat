@@ -47,6 +47,7 @@ public class SingInActivity extends AppCompatActivity {
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Toast.makeText(SingInActivity.this, "Forget Password", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(SingInActivity.this, ForgotPasswordActivity.class));
             }
         });
@@ -78,15 +79,13 @@ public class SingInActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         Toast.makeText(SingInActivity.this, "Login successful.", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(),ShowActivity.class));
+                        startActivity(new Intent(getApplicationContext(), ShowActivity.class));
 
                     } else {
                         Toast.makeText(SingInActivity.this, "Please SingUp.", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
-
-
 
 
             //Toast.makeText(this, "You enter: "+mainData.getEmail()+"/"+mainData.getPassword(), Toast.LENGTH_SHORT).show();

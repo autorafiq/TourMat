@@ -1,49 +1,61 @@
 package com.example.tour;
 
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.tour.Data.MainData;
+import com.example.tour.databinding.ActivityForgotPasswordBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
-    private EditText passwordForgotET, reTypepasswordForgotET;
-    private Button savePasswordBtn;
-    private String password, reTypePassword;
+    private FirebaseAuth mAuth;
+    ActivityForgotPasswordBinding binding;
+    private String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forgot_password);
-        passwordForgotET=findViewById(R.id.passwordForgotET);
-        reTypepasswordForgotET=findViewById(R.id.reTypepasswordForgotET);
-        savePasswordBtn=findViewById(R.id.savePasswordForgotBtn);
-        savePasswordBtn.setOnClickListener(new View.OnClickListener() {
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_forgot_password);
+        mAuth = FirebaseAuth.getInstance();
+
+        binding.resetPasswordEmailBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                password=passwordForgotET.getText().toString().trim();
-                reTypePassword=reTypepasswordForgotET.getText().toString().trim();
-                checkPasswordValidattion(password,reTypePassword);
+                resetPassword();
             }
         });
     }
 
-    private void checkPasswordValidattion(String password, String reTypePassword) {
-        if (password.isEmpty()) {
-            Toast.makeText(ForgotPasswordActivity.this, "Please enter a password.", Toast.LENGTH_SHORT).show();
-        } else if (password.length() < 6) {
-            Toast.makeText(ForgotPasswordActivity.this, "Please enter 6 digit password.", Toast.LENGTH_SHORT).show();
-        } else {
-            //sing in code
-            Toast.makeText(this, "You enter: "+password+"/", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(ForgotPasswordActivity.this, MainActivity.class));
-            finish();
-
+    private void resetPassword() {
+        email = binding.resetPasswordEmailET.getText().toString().trim();
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(getApplication(), "Enter your registered email id", Toast.LENGTH_SHORT).show();
+            return;
         }
+
+        mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(ForgotPasswordActivity.this, "We have sent you instructions to reset your password!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(ForgotPasswordActivity.this, "Failed to send reset email!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        startActivity(new Intent(ForgotPasswordActivity.this, MainActivity.class));
+        finish();
     }
 
 

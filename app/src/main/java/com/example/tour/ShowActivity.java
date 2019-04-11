@@ -28,7 +28,7 @@ import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShowActivity extends AppCompatActivity implements FragmentCommunication {
+public class ShowActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
@@ -48,13 +48,11 @@ public class ShowActivity extends AppCompatActivity implements FragmentCommunica
         database = FirebaseDatabase.getInstance();
         user = mAuth.getCurrentUser().getUid();
         userRef = database.getReference("tourUser").child(user).child("event");
-        //replaceFragment(new TourListFragment());
-
         getDataFromDatabase();
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        tourRecyclerViewAdapter = new TourRecyclerViewAdapter(dataList, getApplicationContext(),this);
+        tourRecyclerViewAdapter = new TourRecyclerViewAdapter(dataList, getApplicationContext());
         recyclerView.setAdapter(tourRecyclerViewAdapter);
         getFlottingButton();
     }
@@ -81,14 +79,6 @@ public class ShowActivity extends AppCompatActivity implements FragmentCommunica
 
     }
 
-    public void replaceFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frameContainer, fragment);
-        fragmentTransaction.addToBackStack(fragment.toString());
-        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-        fragmentTransaction.commit();
-    }
 
     private void getFlottingButton() {
         ImageView icon = new ImageView(this); // Create an icon
@@ -158,7 +148,7 @@ public class ShowActivity extends AppCompatActivity implements FragmentCommunica
 
     }
 
-    @Override
+    /*@Override
     public void respond(String data) {
         //Toast.makeText(this, ""+data, Toast.LENGTH_SHORT).show();
         Bundle bundle = new Bundle();
@@ -168,5 +158,5 @@ public class ShowActivity extends AppCompatActivity implements FragmentCommunica
         fragobj.setArguments(bundle);
 
 
-    }
+    }*/
 }

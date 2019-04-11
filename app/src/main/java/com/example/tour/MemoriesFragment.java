@@ -29,10 +29,10 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class MemoriesFragment extends Fragment {
-private RecyclerView imageRecyclerView;
+/*private RecyclerView imageRecyclerView;
 private ImageAdapter imageAdapter;
 private List<Image>  imageList;
-private DatabaseReference databaseReference;
+private DatabaseReference databaseReference;*/
 
 //    Bundle arguments;
 
@@ -46,10 +46,10 @@ private DatabaseReference databaseReference;
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_memories, container, false);
-        imageRecyclerView=view.findViewById(R.id.imageRecyclerView);
+        /*imageRecyclerView=view.findViewById(R.id.imageRecyclerView);
         imageRecyclerView.setHasFixedSize(true);
         imageRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        imageList=new ArrayList<>();
+        imageList=new ArrayList<>();*/
         /*//tourId
         String tourId = getArguments().getString("tourId");*/
 

@@ -48,8 +48,8 @@ public class AddMemoriesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        dataList = new ArrayList<>();
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_memories);
+        dataList = new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         storage = FirebaseStorage.getInstance();
