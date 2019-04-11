@@ -1,6 +1,7 @@
 package com.example.tour;
 
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,7 @@ public class AddExpenseActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference myRef;
     private List<TourExpense> dataList;
+    private String eventId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,15 @@ public class AddExpenseActivity extends AppCompatActivity {
                 saveTourToDatabase();
             }
         });
+        binding.showTourCostBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddExpenseActivity.this, ExpenseShowActivity.class);
+                intent.putExtra("eventId",eventId);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -48,12 +59,12 @@ public class AddExpenseActivity extends AppCompatActivity {
         String expenseDescription = binding.tourExpenseDescriptionET.getText().toString().trim();
         double tourCost = Double.parseDouble(binding.tourCostET.getText().toString());
         String userId = mAuth.getCurrentUser().getUid();
-        String eventId = getIntent().getStringExtra("tourUid");
+        eventId = getIntent().getStringExtra("tourUid");
         myRef = database.getReference("tourUser").child(userId).child("event").child(eventId);
         TourExpense tourExpense = new TourExpense(expenseDescription,tourCost);
         String expenseId = myRef.push().getKey();
         tourExpense.setCostId(expenseId);
-        myRef.child("expenses").child(eventId).setValue(tourExpense).addOnCompleteListener(new OnCompleteListener<Void>() {
+        myRef.child("expenses").child(expenseId).setValue(tourExpense).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/back"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="vertical"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingTop="5dp"
+        tools:context=".ImageShowActivity">
+        <ProgressBar
+            android:id="@+id/imageViewPB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/imageRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+        <View
+            android:layout_margin="@dimen/action_button_margin"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/white"></View>
+    </LinearLayout>
+</layout>

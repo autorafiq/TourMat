@@ -58,6 +58,17 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="20dp" />
+        <Button
+            android:id="@+id/showTourCostBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:background="#eacc20"
+            android:padding="16dp"
+            android:text="Show Cost"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
 
         <TextView
 

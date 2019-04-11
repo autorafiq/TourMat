@@ -16,6 +16,7 @@ import com.example.tour.Data.Data;
 import com.example.tour.Data.Image;
 import com.example.tour.databinding.ActivityAddMemoriesBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,6 +46,7 @@ public class AddMemoriesActivity extends AppCompatActivity {
     private StorageTask storageTask;
     private String imageName;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +55,8 @@ public class AddMemoriesActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         storage = FirebaseStorage.getInstance();
+        eventId = getIntent().getStringExtra("tourUid");
+        Toast.makeText(this, ""+eventId, Toast.LENGTH_SHORT).show();
 
         binding.imageIV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +80,15 @@ public class AddMemoriesActivity extends AppCompatActivity {
                 }
 
 
+            }
+        });
+        binding.showMemoriesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddMemoriesActivity.this, ImageShowActivity.class);
+                intent.putExtra("eventId",eventId);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             }
         });
     }
@@ -113,9 +126,13 @@ public class AddMemoriesActivity extends AppCompatActivity {
                 if (taskSnapshot != null) {
                     Toast.makeText(AddMemoriesActivity.this, "Image stored successfully", Toast.LENGTH_SHORT).show();
                     String userId = mAuth.getCurrentUser().getUid();
-                    String eventId = getIntent().getStringExtra("tourUid");
                     myRef = database.getReference("tourUser").child(userId).child("event").child(eventId);
-                    Image imageData = new Image(imageName, taskSnapshot.getStorage().getDownloadUrl().toString());
+
+                    Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                    while (!uriTask.isSuccessful());
+                    Uri downloadUri = uriTask.getResult();
+
+                    Image imageData = new Image(imageName, downloadUri.toString());
                     String memoriesId = myRef.push().getKey();
                     imageData.setImageId(memoriesId);
                     myRef.child("memories").child(memoriesId).setValue(imageData);
