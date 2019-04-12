@@ -79,15 +79,12 @@ public class TourRecyclerViewAdapter extends RecyclerView.Adapter<TourRecyclerVi
         viewHolder.binding.budgetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Context context = v.getContext();
-                String value= currentData.getTourUid();
-                fragmentCommunication.respond(value);
-                Intent intent = new Intent(context, AddMemoriesActivity.class);*/
+
                 Context context = v.getContext();
-                Intent intent = new Intent(context, AddExpenseActivity.class);
-                intent.putExtra("tourUid", currentData.getTourUid());
-                //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+                Intent intentA = new Intent(context, AddExpenseActivity.class);
+                intentA.putExtra("tourUidA", currentData.getTourUid());
+                intentA.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intentA);
             }
         });
         viewHolder.binding.deleteBtn.setOnClickListener(new View.OnClickListener() {

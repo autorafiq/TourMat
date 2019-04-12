@@ -10,12 +10,16 @@ import android.widget.Toast;
 
 import com.example.tour.Data.Image;
 import com.example.tour.databinding.ActivityImageShowBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +30,7 @@ public class ImageShowActivity extends AppCompatActivity {
     private List<Image> imageList;
     private DatabaseReference databaseReference;
     private FirebaseAuth mAuth;
-
+    private FirebaseStorage firebaseStorage;
     private String eventId;
 
     @Override
@@ -34,6 +38,7 @@ public class ImageShowActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_image_show);
         mAuth = FirebaseAuth.getInstance();
+        firebaseStorage = FirebaseStorage.getInstance();
         binding.imageRecyclerView.setHasFixedSize(true);
         binding.imageRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -45,12 +50,42 @@ public class ImageShowActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot != null) {
+                    imageList.clear();
                     for (DataSnapshot loadedData : dataSnapshot.getChildren()) {
                         Image imageData = loadedData.getValue(Image.class);
                         imageList.add(imageData);
                     }
-                    imageAdapter=new ImageAdapter(ImageShowActivity.this, imageList);
+                    imageAdapter = new ImageAdapter(ImageShowActivity.this, imageList);
                     binding.imageRecyclerView.setAdapter(imageAdapter);
+                    imageAdapter.setOnItemClickListener(new ImageAdapter.OnItemClickListener() {
+                        @Override
+                        public void OnItemClick(int position) {
+                            String text = imageList.get(position).getImageCaption();
+                            Toast.makeText(ImageShowActivity.this, text + " is selected" + position, Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void OnEdit(int position) {
+                            Toast.makeText(ImageShowActivity.this, "Edit is selected" + position, Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void OnDelete(int position) {
+                            Image selecteItem = imageList.get(position);
+                            final String key = selecteItem.getImageId();
+                            StorageReference storageReference = firebaseStorage.getReferenceFromUrl(selecteItem.getImageUri());
+                            storageReference.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()){
+                                        databaseReference.child(key).removeValue();
+                                        Toast.makeText(ImageShowActivity.this, "Item Deleted", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                            //Toast.makeText(ImageShowActivity.this, "Delete is selected" + key, Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
                 binding.imageViewPB.setVisibility(View.INVISIBLE);
             }

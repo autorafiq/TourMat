@@ -33,7 +33,7 @@ public class AddExpenseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_expense);
-
+        eventId = getIntent().getStringExtra("tourUidA");
         dataList = new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -59,7 +59,7 @@ public class AddExpenseActivity extends AppCompatActivity {
         String expenseDescription = binding.tourExpenseDescriptionET.getText().toString().trim();
         double tourCost = Double.parseDouble(binding.tourCostET.getText().toString());
         String userId = mAuth.getCurrentUser().getUid();
-        eventId = getIntent().getStringExtra("tourUid");
+
         myRef = database.getReference("tourUser").child(userId).child("event").child(eventId);
         TourExpense tourExpense = new TourExpense(expenseDescription,tourCost);
         String expenseId = myRef.push().getKey();
