@@ -1,5 +1,6 @@
 package com.example.tour;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -76,7 +77,14 @@ public class ExpenseShowActivity extends AppCompatActivity {
 
             @Override
             public void onEdit(int position) {
-                Toast.makeText(ExpenseShowActivity.this, "Edit...", Toast.LENGTH_SHORT).show();
+                TourExpense selectEditItem = expenseList.get(position);
+                final String editKey = selectEditItem.getCostId();
+                //Toast.makeText(ExpenseShowActivity.this, "Edit...", Toast.LENGTH_SHORT).show();
+                Intent editIntent = new Intent(getApplicationContext(), UpdateExpenseActivity.class);
+                editIntent.putExtra("eventId", eventId);
+                editIntent.putExtra("expenseId",editKey);
+                editIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(editIntent);
             }
 
             @Override

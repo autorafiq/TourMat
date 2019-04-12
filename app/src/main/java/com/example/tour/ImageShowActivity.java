@@ -1,5 +1,6 @@
 package com.example.tour;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -66,14 +67,21 @@ public class ImageShowActivity extends AppCompatActivity {
 
                         @Override
                         public void OnEdit(int position) {
-                            Toast.makeText(ImageShowActivity.this, "Edit is selected" + position, Toast.LENGTH_SHORT).show();
+                            Image selectEditItem = imageList.get(position);
+                            final String editKey = selectEditItem.getImageId();
+                            Intent editIntent = new Intent(getApplicationContext(), UpdateMemoriesActivity.class);
+                            editIntent.putExtra("eventId", eventId);
+                            editIntent.putExtra("memoriesId",editKey);
+                            editIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(editIntent);
+                            //Toast.makeText(ImageShowActivity.this, "Edit is selected" + position, Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
                         public void OnDelete(int position) {
-                            Image selecteItem = imageList.get(position);
-                            final String key = selecteItem.getImageId();
-                            StorageReference storageReference = firebaseStorage.getReferenceFromUrl(selecteItem.getImageUri());
+                            Image selectItem = imageList.get(position);
+                            final String key = selectItem.getImageId();
+                            StorageReference storageReference = firebaseStorage.getReferenceFromUrl(selectItem.getImageUri());
                             storageReference.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {

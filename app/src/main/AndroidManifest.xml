@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ExpenseShowActivity"></activity>
+        <activity android:name=".UpdateMemoriesActivity"></activity>
+        <activity android:name=".UpdateExpenseActivity" />
+        <activity android:name=".ExpenseShowActivity" />
         <activity android:name=".ImageShowActivity" />
         <activity android:name=".AddExpenseActivity" />
         <activity android:name=".AddMemoriesActivity" />

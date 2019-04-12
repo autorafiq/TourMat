@@ -2,13 +2,13 @@ package com.example.tour.Data;
 
 public class TourExpense {
     private String expenseDescription;
-    private double tourCost;
+    private String tourCost;
     private String costId;
 
     public TourExpense() {
     }
 
-    public TourExpense(String expenseDescription, double tourCost) {
+    public TourExpense(String expenseDescription, String tourCost) {
         this.expenseDescription = expenseDescription;
         this.tourCost = tourCost;
     }
@@ -17,7 +17,7 @@ public class TourExpense {
         return expenseDescription;
     }
 
-    public double getTourCost() {
+    public String getTourCost() {
         return tourCost;
     }
 

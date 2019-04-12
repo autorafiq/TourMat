@@ -10,6 +10,10 @@ public class Image {
     public Image() {
     }
 
+    public Image(String imageCaption) {
+        this.imageCaption = imageCaption;
+    }
+
     public Image(String imageCaption, String imageUri) {
         this.imageCaption = imageCaption;
         this.imageUri = imageUri;

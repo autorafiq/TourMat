@@ -90,6 +90,7 @@ public class TourRecyclerViewAdapter extends RecyclerView.Adapter<TourRecyclerVi
         viewHolder.binding.deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Toast.makeText(context, "Deleted...", Toast.LENGTH_SHORT).show();
             }
         });

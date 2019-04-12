@@ -57,7 +57,7 @@ public class AddExpenseActivity extends AppCompatActivity {
 
     private void saveTourToDatabase() {
         String expenseDescription = binding.tourExpenseDescriptionET.getText().toString().trim();
-        double tourCost = Double.parseDouble(binding.tourCostET.getText().toString());
+        String tourCost = binding.tourCostET.getText().toString();
         String userId = mAuth.getCurrentUser().getUid();
 
         myRef = database.getReference("tourUser").child(userId).child("event").child(eventId);
