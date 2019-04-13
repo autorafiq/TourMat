@@ -58,7 +58,11 @@ public class TourRecyclerViewAdapter extends RecyclerView.Adapter<TourRecyclerVi
         viewHolder.binding.editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Edit", Toast.LENGTH_SHORT).show();
+                Context context = v.getContext();
+                Intent intent = new Intent(context,EditTourActivity.class);
+                intent.putExtra("tourUid",currentData.getTourUid());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
             }
         });
 
@@ -69,7 +73,7 @@ public class TourRecyclerViewAdapter extends RecyclerView.Adapter<TourRecyclerVi
                 Context context = v.getContext();
                 Intent intent = new Intent(context, AddMemoriesActivity.class);
                 intent.putExtra("tourUid", currentData.getTourUid());
-                //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
 
             }

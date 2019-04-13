@@ -7,26 +7,65 @@
     android:background="@color/back"
     android:gravity="center_horizontal|center_vertical"
     android:orientation="vertical"
-    android:paddingRight="16dp"
-    android:paddingBottom="16dp"
     android:paddingLeft="16dp"
     android:paddingTop="5dp"
-    tools:context=".ShowActivity"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
     android:weightSum="10"
-    >
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    tools:context=".ShowActivity">
+
+    <LinearLayout
+
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="9"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutId"
+        android:background="@color/yellow"
+        android:orientation="horizontal"
         >
 
-    </android.support.v7.widget.RecyclerView>
+        <Button
+            android:id="@+id/searchStartDateBtn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".50"
+            android:text="Start Date"
+            android:textColor="#115173" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/white"></View>
+        <Button
+            android:id="@+id/searchEndDateBtn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".50"
+            android:text="End Date"
+            android:textColor="#1c1259" />
+        <Button
+            android:id="@+id/searchDateBtn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".50"
+            android:text="Search"
+            android:textColor="#1c1259" />
 
 
-</LinearLayout>
+    </LinearLayout>
+
+
+
+<android.support.v7.widget.RecyclerView
+android:id="@+id/recyclerView"
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="8.7">
+
+</android.support.v7.widget.RecyclerView>
+
+<View
+android:layout_width="match_parent"
+android:layout_height="2dp"
+android:background="@color/white"></View>
+
+
+    </LinearLayout>
