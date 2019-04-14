@@ -37,6 +37,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import maes.tech.intentanim.CustomIntent;
+
 public class ShowActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private FirebaseAuth mAuth;
@@ -49,6 +51,7 @@ public class ShowActivity extends AppCompatActivity {
     private long startDate, endDate;
     private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     private SimpleDateFormat dateSDF = new SimpleDateFormat("dd/MM/yyyy");
+
 
 
     @Override
@@ -89,11 +92,6 @@ public class ShowActivity extends AppCompatActivity {
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
                 DatePickerDialog datePickerDialog = new DatePickerDialog(ShowActivity.this, dateSetListener, year, month, day);
                 datePickerDialog.show();
-
-
-
-
-
             }
 
         });
@@ -197,8 +195,6 @@ public class ShowActivity extends AppCompatActivity {
         });
 
     }
-
-
     private void getFlottingButton() {
         ImageView icon = new ImageView(this); // Create an icon
         icon.setImageResource(R.drawable.ic_add_black_24dp);
@@ -211,7 +207,7 @@ public class ShowActivity extends AppCompatActivity {
         // repeat many times:
 
         ImageView detailsIcon = new ImageView(this);
-        detailsIcon.setImageResource(R.drawable.ic_details_black_24dp);
+        detailsIcon.setImageResource(R.drawable.ic_add_logo_svg_vector);
         SubActionButton button1 = itemBuilder.setContentView(detailsIcon).build();
 
         ImageView memoriesIcon = new ImageView(this);
@@ -239,20 +235,24 @@ public class ShowActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ShowActivity.this, AddTourActivity.class)); //Go back to home page
-                finish();
+                CustomIntent.customType(ShowActivity.this,"fadein-to-fadeout");
+
             }
         });
 
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ShowActivity.this, AddMemoriesActivity.class));
+                /*startActivity(new Intent(ShowActivity.this, AddMemoriesActivity.class));
+                CustomIntent.customType(ShowActivity.this,"left-to-right");*/
             }
         });
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ShowActivity.this, AddExpenseActivity.class));
+
+                /*startActivity(new Intent(ShowActivity.this, AddExpenseActivity.class));
+                CustomIntent.customType(ShowActivity.this,"left-to-right");*/
             }
         });
         button4.setOnClickListener(new View.OnClickListener() {
@@ -261,21 +261,8 @@ public class ShowActivity extends AppCompatActivity {
                 mAuth.signOut();
                 //End user session
                 startActivity(new Intent(ShowActivity.this, SingInActivity.class)); //Go back to home page
-                finish();
+                CustomIntent.customType(ShowActivity.this,"right-to-left");
             }
         });
-
     }
-
-    /*@Override
-    public void respond(String data) {
-        //Toast.makeText(this, ""+data, Toast.LENGTH_SHORT).show();
-        Bundle bundle = new Bundle();
-        bundle.putString("tourId", data);
-        // set Fragmentclass Arguments
-        MemoriesFragment fragobj = new MemoriesFragment();
-        fragobj.setArguments(bundle);
-
-
-    }*/
-}
+   }

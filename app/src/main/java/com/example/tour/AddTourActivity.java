@@ -29,8 +29,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import maes.tech.intentanim.CustomIntent;
+
 public class AddTourActivity extends AppCompatActivity {
-    private EditText tourNameET, tourDescriptionET, startDateET, endDateET, budgetET, testET;
+    private EditText tourNameET, tourDescriptionET, startDateET, endDateET, budgetET;
+    //    private EditText testET;
     private Button saveTourInfoBtn;
     private DatePickerDialogFragment mDatePickerDialogFragment;
     private String uid, tourName, tourDescription;
@@ -55,7 +58,7 @@ public class AddTourActivity extends AppCompatActivity {
         endDateET = findViewById(R.id.endDateAddTourET);
         budgetET = findViewById(R.id.tourBudgetET);
         saveTourInfoBtn = findViewById(R.id.saveTourInfoAddTourBtn);
-        testET = findViewById(R.id.testET);
+//        testET = findViewById(R.id.testET);
         startDateET.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,12 +110,20 @@ public class AddTourActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(AddTourActivity.this, "Tour info saved successfully.", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(),ShowActivity.class));
+                    startActivity(new Intent(AddTourActivity.this, ShowActivity.class));
+                    CustomIntent.customType(AddTourActivity.this, "fadein-to-fadeout");
+                    finish();
                 } else {
                     Toast.makeText(AddTourActivity.this, "Tour info not save successfully.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        CustomIntent.customType(this, "fadein-to-fadeout");
     }
 }
 

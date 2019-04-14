@@ -17,6 +17,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import maes.tech.intentanim.CustomIntent;
+
 public class SingInActivity extends AppCompatActivity {
     private TextView singUp, forgotPassword;
     private EditText emailET, passwordET;
@@ -41,7 +43,7 @@ public class SingInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SingInActivity.this, Main2Activity.class));
-                //finish();
+                CustomIntent.customType(SingInActivity.this,"fadein-to-fadeout");
             }
         });
         forgotPassword.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +51,7 @@ public class SingInActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Toast.makeText(SingInActivity.this, "Forget Password", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(SingInActivity.this, ForgotPasswordActivity.class));
+                CustomIntent.customType(SingInActivity.this,"up-to-bottom");
             }
         });
 
@@ -78,8 +81,9 @@ public class SingInActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        Toast.makeText(SingInActivity.this, "Login successful.", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), ShowActivity.class));
+                        //Toast.makeText(SingInActivity.this, "Login successful.", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(SingInActivity.this, ShowActivity.class));
+                        CustomIntent.customType(SingInActivity.this,"left-to-right");
 
                     } else {
                         Toast.makeText(SingInActivity.this, "Please SingUp.", Toast.LENGTH_SHORT).show();

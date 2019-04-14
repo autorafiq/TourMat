@@ -17,6 +17,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import maes.tech.intentanim.CustomIntent;
+
 public class Main2Activity extends AppCompatActivity {
     private Button singUpBtn;
     private EditText nameET, emailET, passwordET, repasswordET, cellNumberET;
@@ -27,6 +29,12 @@ public class Main2Activity extends AppCompatActivity {
     // Write to the database
     private FirebaseDatabase database;
     private DatabaseReference myRef;
+
+    @Override
+    public void finish() {
+        super.finish();
+        CustomIntent.customType(Main2Activity.this,"fadein-to-fadeout");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +103,7 @@ public class Main2Activity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Toast.makeText(Main2Activity.this, "User info saved successfully.", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(Main2Activity.this,ShowActivity.class));
+                    CustomIntent.customType(Main2Activity.this,"left-to-right");
                 } else {
                     Toast.makeText(Main2Activity.this, "User info not save successfully.", Toast.LENGTH_SHORT).show();
                 }

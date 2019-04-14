@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.tour.Data.Data;
 import com.example.tour.Data.Image;
 import com.example.tour.databinding.ActivityAddMemoriesBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,6 +33,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import maes.tech.intentanim.CustomIntent;
+
 public class AddMemoriesActivity extends AppCompatActivity {
     ActivityAddMemoriesBinding binding;
     private static final int IMAGE_REQUEST = 1;
@@ -46,6 +49,11 @@ public class AddMemoriesActivity extends AppCompatActivity {
     private StorageTask storageTask;
     private String imageName;
 
+    @Override
+    public void finish() {
+        super.finish();
+        CustomIntent.customType(AddMemoriesActivity.this,"right-to-left");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +95,7 @@ public class AddMemoriesActivity extends AppCompatActivity {
                 intent.putExtra("eventId",eventId);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+                CustomIntent.customType(AddMemoriesActivity.this,"left-to-right");
             }
         });
     }
@@ -133,7 +142,20 @@ public class AddMemoriesActivity extends AppCompatActivity {
                     Image imageData = new Image(imageName, downloadUri.toString());
                     String memoriesId = myRef.push().getKey();
                     imageData.setImageId(memoriesId);
-                    myRef.child("memories").child(memoriesId).setValue(imageData);
+                    myRef.child("memories").child(memoriesId).setValue(imageData).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()){
+                                Toast.makeText(AddMemoriesActivity.this, "Image stored successfully", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(AddMemoriesActivity.this, ImageShowActivity.class);
+                                intent.putExtra("eventId",eventId);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                                CustomIntent.customType(AddMemoriesActivity.this,"left-to-right");
+                                finish();
+                            }
+                        }
+                    });
                 } else {
                     Toast.makeText(AddMemoriesActivity.this, "Image not stored successfully", Toast.LENGTH_SHORT).show();
                 }

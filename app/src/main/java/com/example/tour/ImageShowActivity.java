@@ -25,6 +25,8 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.List;
 
+import maes.tech.intentanim.CustomIntent;
+
 public class ImageShowActivity extends AppCompatActivity {
     ActivityImageShowBinding binding;
     private ImageAdapter imageAdapter;
@@ -33,6 +35,12 @@ public class ImageShowActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseStorage firebaseStorage;
     private String eventId;
+
+    @Override
+    public void finish() {
+        super.finish();
+        CustomIntent.customType(ImageShowActivity.this,"right-to-left");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +55,7 @@ public class ImageShowActivity extends AppCompatActivity {
         String userId = mAuth.getCurrentUser().getUid();
         eventId = getIntent().getStringExtra("eventId");
         databaseReference = FirebaseDatabase.getInstance().getReference("tourUser").child(userId).child("event").child(eventId).child("memories");
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.orderByChild("imageUri").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot != null) {
@@ -62,18 +70,19 @@ public class ImageShowActivity extends AppCompatActivity {
                         @Override
                         public void OnItemClick(int position) {
                             String text = imageList.get(position).getImageCaption();
-                            Toast.makeText(ImageShowActivity.this, text + " is selected" + position, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ImageShowActivity.this, text + " is selected", Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
                         public void OnEdit(int position) {
                             Image selectEditItem = imageList.get(position);
                             final String editKey = selectEditItem.getImageId();
-                            Intent editIntent = new Intent(getApplicationContext(), UpdateMemoriesActivity.class);
+                            Intent editIntent = new Intent(ImageShowActivity.this, UpdateMemoriesActivity.class);
                             editIntent.putExtra("eventId", eventId);
                             editIntent.putExtra("memoriesId",editKey);
                             editIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(editIntent);
+                            CustomIntent.customType(ImageShowActivity.this,"left-to-right");
                             //Toast.makeText(ImageShowActivity.this, "Edit is selected" + position, Toast.LENGTH_SHORT).show();
                         }
 

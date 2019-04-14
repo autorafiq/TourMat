@@ -12,6 +12,8 @@ import android.widget.Toast;
 import com.example.tour.Data.Image;
 import com.example.tour.Data.TourExpense;
 import com.example.tour.databinding.ActivityExpenseShowBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,6 +24,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import maes.tech.intentanim.CustomIntent;
+
 public class ExpenseShowActivity extends AppCompatActivity {
     ActivityExpenseShowBinding binding;
     private String eventId;
@@ -29,6 +33,13 @@ public class ExpenseShowActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private FirebaseAuth mAuth;
     private ExpenseAdapter expenseAdapter;
+
+
+    @Override
+    public void finish() {
+        super.finish();
+        CustomIntent.customType(ExpenseShowActivity.this, "right-to-left");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +62,6 @@ public class ExpenseShowActivity extends AppCompatActivity {
                     for (DataSnapshot loadedData : dataSnapshot.getChildren()) {
                         TourExpense tourExpense = loadedData.getValue(TourExpense.class);
                         expenseList.add(tourExpense);
-
                     }
 
                 }
@@ -72,7 +82,7 @@ public class ExpenseShowActivity extends AppCompatActivity {
             @Override
             public void onItemClick(int position) {
                 String text = expenseList.get(position).getExpenseDescription();
-                Toast.makeText(ExpenseShowActivity.this, "" + text, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ExpenseShowActivity.this, "" + text, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -80,17 +90,30 @@ public class ExpenseShowActivity extends AppCompatActivity {
                 TourExpense selectEditItem = expenseList.get(position);
                 final String editKey = selectEditItem.getCostId();
                 //Toast.makeText(ExpenseShowActivity.this, "Edit...", Toast.LENGTH_SHORT).show();
-                Intent editIntent = new Intent(getApplicationContext(), UpdateExpenseActivity.class);
+                Intent editIntent = new Intent(ExpenseShowActivity.this, UpdateExpenseActivity.class);
                 editIntent.putExtra("eventId", eventId);
-                editIntent.putExtra("expenseId",editKey);
+                editIntent.putExtra("expenseId", editKey);
                 editIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(editIntent);
+                CustomIntent.customType(ExpenseShowActivity.this, "left-to-right");
             }
 
             @Override
             public void onDelete(int position) {
-                Toast.makeText(ExpenseShowActivity.this, "Delete...", Toast.LENGTH_SHORT).show();
+                TourExpense selectEditItem = expenseList.get(position);
+                final String editKey = selectEditItem.getCostId();
+                databaseReference.child(editKey).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            Toast.makeText(ExpenseShowActivity.this, "Item Deleted", Toast.LENGTH_SHORT).show();
+                            expenseAdapter.notifyDataSetChanged();
+                        }
+                    }
+                });
+
             }
         });
     }
+
 }

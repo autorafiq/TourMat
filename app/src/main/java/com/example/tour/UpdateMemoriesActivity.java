@@ -32,6 +32,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import maes.tech.intentanim.CustomIntent;
+
 public class UpdateMemoriesActivity extends AppCompatActivity {
     ActivityUpdateMemoriesBinding binding;
     private String userId, eventId, memoriesId;
@@ -40,6 +42,11 @@ public class UpdateMemoriesActivity extends AppCompatActivity {
     private static final int IMAGE_REQUEST = 100;
     private String imageName;
 
+    @Override
+    public void finish() {
+        super.finish();
+        CustomIntent.customType(UpdateMemoriesActivity.this,"right-to-left");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +59,7 @@ public class UpdateMemoriesActivity extends AppCompatActivity {
         userId = mAuth.getCurrentUser().getUid();
         eventId = getIntent().getStringExtra("eventId");
         memoriesId = getIntent().getStringExtra("memoriesId");
-        Toast.makeText(getApplicationContext(), "" + eventId + " / " + memoriesId, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "" + eventId + " / " + memoriesId, Toast.LENGTH_SHORT).show();
         databaseReference = FirebaseDatabase.getInstance().getReference("tourUser").child(userId).child("event").child(eventId).child("memories").child(memoriesId);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -82,6 +89,7 @@ public class UpdateMemoriesActivity extends AppCompatActivity {
                 intent.putExtra("eventId", eventId);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+                CustomIntent.customType(UpdateMemoriesActivity.this,"left-to-right");
             }
         });
         binding.updateImageIV.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +122,9 @@ public class UpdateMemoriesActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(getApplicationContext(), "Caption Updated", Toast.LENGTH_SHORT).show();
+
+                    CustomIntent.customType(UpdateMemoriesActivity.this,"right-to-left");
+                    finish();
                 }
             }
         });

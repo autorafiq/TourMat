@@ -29,6 +29,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import maes.tech.intentanim.CustomIntent;
+
 public class EditTourActivity extends AppCompatActivity {
     ActivityEditTourBinding binding;
     private DatePickerDialogFragment datePickerDialogFragment;
@@ -45,11 +47,17 @@ public class EditTourActivity extends AppCompatActivity {
     private SimpleDateFormat dateSDF = new SimpleDateFormat("dd/MM/yyyy");
 
     @Override
+    public void finish() {
+        super.finish();
+        CustomIntent.customType(EditTourActivity.this,"right-to-left");
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_tour);
         tourId = getIntent().getStringExtra("tourUid").toString();
-        Toast.makeText(this, "Tour Id: " + tourId, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Tour Id: " + tourId, Toast.LENGTH_SHORT).show();
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser().getUid();
         // Write to the database
@@ -153,7 +161,7 @@ public class EditTourActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Please enter your tour date range.", Toast.LENGTH_SHORT).show();
                 } else {
                     updateEditedData(new Data(tourName, tourDescription, startDate, endDate, budget));
-                    finish();
+
                 }
 
             }
@@ -173,7 +181,9 @@ public class EditTourActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
-                    Toast.makeText(EditTourActivity.this, "Updated.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditTourActivity.this, "Tour Info Updated.", Toast.LENGTH_SHORT).show();
+                    CustomIntent.customType(EditTourActivity.this,"left-to-right");
+                    finish();
                 }
             }
         });

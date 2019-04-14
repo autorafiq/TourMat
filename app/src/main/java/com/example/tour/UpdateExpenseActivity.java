@@ -23,11 +23,14 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import maes.tech.intentanim.CustomIntent;
+
 public class UpdateExpenseActivity extends AppCompatActivity {
     private String eventId, expenseId;
     ActivityUpdateExpenseBinding binding;
     private DatabaseReference databaseReference;
     private FirebaseAuth mAuth;
+
 
 
     @Override
@@ -76,6 +79,11 @@ public class UpdateExpenseActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(getApplicationContext(), "Data updated", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), ExpenseShowActivity.class);
+                            intent.putExtra("eventId", eventId);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                            CustomIntent.customType(UpdateExpenseActivity.this,"right-to-left");
                             finish();
                         }
                     }
@@ -83,4 +91,11 @@ public class UpdateExpenseActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+        CustomIntent.customType(UpdateExpenseActivity.this,"right-to-left");
+    }
+
 }

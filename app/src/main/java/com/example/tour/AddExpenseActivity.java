@@ -21,6 +21,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import java.util.ArrayList;
 import java.util.List;
 
+import maes.tech.intentanim.CustomIntent;
+
 public class AddExpenseActivity extends AppCompatActivity {
     ActivityAddExpenseBinding binding;
     private FirebaseAuth mAuth;
@@ -28,6 +30,12 @@ public class AddExpenseActivity extends AppCompatActivity {
     private DatabaseReference myRef;
     private List<TourExpense> dataList;
     private String eventId;
+
+    @Override
+    public void finish() {
+        super.finish();
+        CustomIntent.customType(AddExpenseActivity.this,"right-to-left");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +58,8 @@ public class AddExpenseActivity extends AppCompatActivity {
                 intent.putExtra("eventId",eventId);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+                CustomIntent.customType(AddExpenseActivity.this,"left-to-right");
+
             }
         });
 
@@ -69,6 +79,11 @@ public class AddExpenseActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
                     Toast.makeText(AddExpenseActivity.this, "Tour expense add successfully.", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(AddExpenseActivity.this, ExpenseShowActivity.class);
+                    intent.putExtra("eventId",eventId);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    CustomIntent.customType(AddExpenseActivity.this,"left-to-right");
                 }
             }
         });
