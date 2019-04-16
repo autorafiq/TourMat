@@ -9,4 +9,11 @@
     <color name="back">#474747</color>
     <color name="yellow">#eacc20</color>
     <color name="editTextBackground">#111111</color>
+    <color name="edit_text_color">#FFFFFF</color>
+    <color name="memories">#115173</color>
+    <color name="expense">#1c1259</color>
+    <color name="delete">#c40b13</color>
+    <color name="edit">#FF3EA5FF</color>
+    <color name="start_date">#292826</color>
+    <color name="end_date">#3C1A5B</color>
 </resources>

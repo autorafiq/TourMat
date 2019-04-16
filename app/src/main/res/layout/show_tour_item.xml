@@ -35,7 +35,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight=".5"
-                    android:text="Tour name :"
+                    android:text="@string/tour_name"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -44,7 +44,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight=".5"
-                    android:text="Description :"
+                    android:text="@string/description"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -61,10 +61,11 @@
                     android:layout_height="wrap_content"
                     android:layout_weight=".5"
                     android:paddingLeft="10dp"
-                    android:text="Tour Name"
+                    android:text="@string/tour_name_demo"
                     android:textColor="@color/back"
                     android:textSize="18sp"
-                    android:textStyle="italic" />
+                    android:textStyle="italic"
+                    tools:ignore="HardcodedText" />
 
 
                 <TextView
@@ -73,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight=".5"
                     android:paddingLeft="10dp"
-                    android:text="Tour description"
+                    android:text="@string/description_demo"
                     android:textColor="@color/back"
                     android:textSize="18sp"
                     android:textStyle="italic" />
@@ -87,7 +88,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight=".5"
-                    android:text="Start Date"
+                    android:text="@string/start_date"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -96,7 +97,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight=".5"
-                    android:text="End Date"
+                    android:text="@string/end_date"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -114,7 +115,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight=".5"
                     android:paddingLeft="10dp"
-                    android:text="01/01/2020"
+                    android:text="@string/start_date_demo"
                     android:textColor="@color/back"
                     android:textSize="18sp"
                     android:textStyle="italic" />
@@ -125,7 +126,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight=".5"
                     android:paddingLeft="10dp"
-                    android:text="30/01/2020"
+                    android:text="@string/end_date_demo"
                     android:textColor="@color/back"
                     android:textSize="18sp"
                     android:textStyle="italic" />
@@ -135,7 +136,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Total Tour Budget"
+                android:text="@string/total_tour_budget"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="20sp"
@@ -145,7 +146,7 @@
                 android:id="@+id/budgetTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="10000/-"
+                android:text="@string/budget_demo"
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="italic" />
@@ -172,7 +173,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".19"
                 android:text="Edit"
-                android:textColor="@color/white"
+                android:textColor="@color/edit"
                 android:textStyle="bold" />
 
             <Button
@@ -183,7 +184,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".30"
                 android:text="memories"
-                android:textColor="#115173" />
+                android:textColor="@color/memories" />
 
             <Button
                 android:id="@+id/budgetBtn"
@@ -192,7 +193,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".27"
                 android:text="expense"
-                android:textColor="#1c1259" />
+                android:textColor="@color/expense" />
 
             <Button
                 android:id="@+id/deleteBtn"
@@ -201,7 +202,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".24"
                 android:text="delete"
-                android:textColor="#c40b13" />
+                android:textColor="@color/delete" />
 
         </LinearLayout>
 

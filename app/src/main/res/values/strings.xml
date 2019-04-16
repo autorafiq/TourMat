@@ -4,4 +4,60 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_log_in">LogInActivity</string>
+    <string name="num">0.0/-</string>
+    <string name="enter_tour_expense_description">Enter tour expense description...</string>
+    <string name="cost">Cost...</string>
+    <string name="save_cost">Save Cost</string>
+    <string name="show_cost">Show Cost</string>
+    <string name="you_are_about_to_add_your_tour_expense">You are about to add your tour expense.</string>
+    <string name="add_your_photo">Add Your Photo</string>
+    <string name="write_your_image_caption_here">write your image caption here...</string>
+    <string name="add">Add</string>
+    <string name="open_gallery">Open Gallery</string>
+    <string name="enter_tour_name_here">Enter tour name here</string>
+    <string name="tour_description">Tour Description</string>
+    <string name="tour_start_date">Tour Start Date</string>
+    <string name="tour_end_date">Tour End Date</string>
+    <string name="save_tour_info">Save Tour Info</string>
+    <string name="you_are_about_to_save_about_your_tour">You are about to save about your tour.</string>
+
+    <string name="budget">Budget</string>
+    <string name="update_tour_info">Update Tour Info</string>
+    <string name="you_are_about_to_edit_about_your_tour">You are about to edit about your tour.</string>
+    <string name="total_cost">Total Cost</string>
+    <string name="balance_amount">Balance Amount</string>
+
+    <string name="e_mail_address">E-mail address</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="you_are_about_to_reset_your_password">You are about to reset your password</string>
+    <string name="welcome">Welcome</string>
+    <string name="enter_your_name_here">Enter your name here</string>
+    <string name="password">Password</string>
+    <string name="retype_password">ReType Password</string>
+    <string name="cell_number">Cell Number</string>
+    <string name="sing_up">Sing Up</string>
+    <string name="you_are_about_to_create_an_account_with_tourbd_com">You are about to create an account with TourBD.com</string>
+    <string name="start_date">Start Date</string>
+    <string name="end_date">End Date</string>
+    <string name="search">Search</string>
+    <string name="sing_in">Sing In</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="are_you_new_here">are you New here?</string>
+    <string name="update_cost">Update Cost</string>
+    <string name="update">Update</string>
+    <string name="expense_type">Expense Type</string>
+    <string name="amount">Amount</string>
+    <string name="hotel_rent">Hotel Rent</string>
+    <string name="_1750">1750</string>
+    <string name="image_name">Image Name</string>
+    <string name="tour_name">Tour name :</string>
+    <string name="description">Description :</string>
+    <string name="start_date_demo">01/01/2020</string>
+    <string name="end_date_demo">30/01/2020</string>
+    <string name="total_tour_budget">Total Tour Budget</string>
+    <string name="budget_demo">10000/-</string>
+    <string name="tour_name_demo">Tour Name</string>
+    <string name="description_demo">Tour description</string>
+
+
 </resources>

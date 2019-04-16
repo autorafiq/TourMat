@@ -31,7 +31,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight=".6"
-                    android:text="Expense Type"
+                    android:text="@string/expense_type"
                     android:textColor="@color/white"
                     android:textSize="21sp"
                     android:textStyle="bold" />
@@ -40,7 +40,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight=".4"
-                    android:text="Amount"
+                    android:text="@string/amount"
                     android:textColor="@color/white"
                     android:textSize="21sp"
                     android:textStyle="bold" />
@@ -58,7 +58,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight=".6"
                     android:paddingLeft="10dp"
-                    android:text="Hotel Rent"
+                    android:text="@string/hotel_rent"
                     android:textColor="@color/back"
                     android:textSize="18sp"
                     android:textStyle="italic" />
@@ -70,7 +70,7 @@
                     android:layout_weight=".4"
                     android:drawableRight="@drawable/ic_directions_run_black_24dp"
                     android:paddingLeft="10dp"
-                    android:text="1750"
+                    android:text="@string/_1750"
                     android:textColor="@color/back"
                     android:textSize="18sp"
                     android:textStyle="italic" />

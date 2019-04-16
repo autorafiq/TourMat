@@ -22,13 +22,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:background="@color/editTextBackground"
+            android:background="@drawable/edit_round"
             android:drawableLeft="@drawable/ic_directions_run_black_24dp"
-            android:hint="Enter tour name here"
+            android:hint="@string/enter_tour_name_here"
             android:padding="16dp"
             android:singleLine="true"
             android:textAlignment="center"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/edit_text_color"
             android:textColorHint="@color/white" />
 
         <EditText
@@ -37,13 +37,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:background="@color/editTextBackground"
+            android:background="@drawable/edit_round"
             android:drawableLeft="@drawable/ic_wb_sunny_black_24dp"
-            android:hint="Tour Description"
+            android:hint="@string/tour_description"
             android:padding="16dp"
             android:singleLine="true"
             android:textAlignment="center"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/edit_text_color"
             android:textColorHint="@color/white" />
 
         <EditText
@@ -51,14 +51,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:background="@color/editTextBackground"
+            android:background="@drawable/edit_round"
             android:drawableLeft="@drawable/ic_date_range_black_24dp"
             android:focusable="false"
-            android:hint="Tour Start Date"
+            android:hint="@string/tour_start_date"
             android:inputType="text"
             android:padding="16dp"
             android:textAlignment="center"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/edit_text_color"
             android:textColorHint="@color/white" />
 
         <EditText
@@ -66,14 +66,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:background="@color/editTextBackground"
+            android:background="@drawable/edit_round"
             android:drawableLeft="@drawable/ic_date_range_black_24dp"
             android:focusable="false"
-            android:hint="Tour End Date"
+            android:hint="@string/tour_end_date"
             android:inputType="text"
             android:padding="16dp"
             android:textAlignment="center"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/edit_text_color"
             android:textColorHint="@color/white" />
 
         <EditText
@@ -82,12 +82,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:background="@color/editTextBackground"
+            android:background="@drawable/edit_round"
             android:drawableLeft="@drawable/ic_attach_money_black_24dp"
             android:hint="Budget"
             android:padding="16dp"
             android:textAlignment="center"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/edit_text_color"
             android:textColorHint="@color/white" />
 
         <Button
@@ -95,9 +95,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
-            android:background="#eacc20"
+            android:background="@drawable/round"
             android:padding="16dp"
-            android:text="Save Tour Info"
+            android:text="@string/save_tour_info"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="20dp" />
@@ -107,7 +107,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="You are about to save about your tour."
+            android:text="@string/you_are_about_to_save_about_your_tour"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="15sp" />

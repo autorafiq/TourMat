@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="Add Your Photo"
+            android:text="@string/add_your_photo"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="25sp"
@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:background="#111111"
+            android:background="@color/editTextBackground"
             android:orientation="vertical"
             android:padding="16dp">
 
@@ -46,11 +46,11 @@
                 android:layout_height="wrap_content"
                 android:backgroundTintMode="multiply"
                 android:drawableLeft="@drawable/ic_mode_edit_black_24dp"
-                android:hint="write your image caption here..."
+                android:hint="@string/write_your_image_caption_here"
                 android:inputType="text"
                 android:shadowColor="@color/white"
                 android:textAlignment="center"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/edit_text_color"
                 android:textColorHint="@color/white" />
 
             <Button
@@ -58,9 +58,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:background="@color/yellow"
+                android:background="@drawable/round"
                 android:padding="16dp"
-                android:text="Update"
+                android:text="@string/update"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="20dp" />
@@ -69,9 +69,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:background="@color/yellow"
+                android:background="@drawable/round"
                 android:padding="16dp"
-                android:text="Open Gallery"
+                android:text="@string/open_gallery"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="20dp" />

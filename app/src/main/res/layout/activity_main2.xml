@@ -15,15 +15,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:background="#111111"
+            android:background="@drawable/edit_round"
 
             android:drawableLeft="@drawable/ic_face_black_24dp"
-            android:hint="Enter your name here"
+            android:hint="@string/enter_your_name_here"
             android:inputType="textEmailAddress"
             android:padding="16dp"
             android:singleLine="true"
             android:textAlignment="center"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/edit_text_color"
             android:textColorHint="@color/white" />
 
         <EditText
@@ -31,15 +31,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:background="#111111"
+            android:background="@drawable/edit_round"
 
             android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
-            android:hint="E-mail address"
+            android:hint="@string/e_mail_address"
             android:inputType="textEmailAddress"
             android:padding="16dp"
             android:singleLine="true"
             android:textAlignment="center"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/edit_text_color"
             android:textColorHint="@color/white" />
 
         <EditText
@@ -47,26 +47,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:background="#111111"
+            android:background="@drawable/edit_round"
             android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:padding="16dp"
             android:textAlignment="center"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/edit_text_color"
             android:textColorHint="@color/white" />
         <EditText
             android:id="@+id/reTypepasswordSingUpET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:background="#111111"
+            android:background="@drawable/edit_round"
             android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
-            android:hint="ReType Password"
+            android:hint="@string/retype_password"
             android:inputType="textPassword"
             android:padding="16dp"
             android:textAlignment="center"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/edit_text_color"
             android:textColorHint="@color/white" />
 
         <EditText
@@ -74,13 +74,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:background="#111111"
+            android:background="@drawable/edit_round"
             android:drawableLeft="@drawable/ic_phonelink_ring_black_24dp"
-            android:hint="Cell Number"
+            android:hint="@string/cell_number"
             android:inputType="textPassword"
             android:padding="16dp"
             android:textAlignment="center"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/edit_text_color"
             android:textColorHint="@color/white" />
 
         <Button
@@ -88,9 +88,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
-            android:background="#eacc20"
+            android:background="@drawable/round"
             android:padding="16dp"
-            android:text="Sing Up"
+            android:text="@string/sing_up"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="20dp" />
@@ -100,7 +100,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="You are about to create an account with TourBD.com"
+            android:text="@string/you_are_about_to_create_an_account_with_tourbd_com"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="15sp" />

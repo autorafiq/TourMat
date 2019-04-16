@@ -52,7 +52,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight=".4"
-                        android:text="Total Cost"
+                        android:text="@string/total_cost"
                         android:textColor="@color/white"
                         android:textSize="21sp"
                         android:textStyle="bold" />
@@ -61,7 +61,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight=".6"
-                        android:text="Balance Amount"
+                        android:text="@string/balance_amount"
                         android:textColor="@color/white"
                         android:textSize="21sp"
                         android:textStyle="bold" />
@@ -79,7 +79,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight=".4"
                         android:paddingLeft="10dp"
-                        android:text="0.0/-"
+                        android:text="@string/num"
                         android:textColor="@color/back"
                         android:textSize="18sp"
                         android:textStyle="italic" />
@@ -91,7 +91,7 @@
                         android:layout_weight=".6"
                         android:drawableRight="@drawable/ic_directions_run_black_24dp"
                         android:paddingLeft="10dp"
-                        android:text="0.0/-"
+                        android:text="@string/num"
                         android:textColor="@color/back"
                         android:textSize="18sp"
                         android:textStyle="italic"
