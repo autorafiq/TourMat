@@ -1,6 +1,7 @@
 package com.example.tour;
 
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,18 +11,19 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.tour.Data.MainData;
+import com.example.tour.databinding.ActivityMain2Binding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import maes.tech.intentanim.CustomIntent;
 
 public class Main2Activity extends AppCompatActivity {
-    private Button singUpBtn;
-    private EditText nameET, emailET, passwordET, repasswordET, cellNumberET;
+    private ActivityMain2Binding binding;
     private String uid, name, email, password, reTypePassword, cellNumber;
     private Double cellNumberIn;
     private FirebaseAuth mAuth;
@@ -33,28 +35,28 @@ public class Main2Activity extends AppCompatActivity {
     @Override
     public void finish() {
         super.finish();
-        CustomIntent.customType(Main2Activity.this,"fadein-to-fadeout");
+        CustomIntent.customType(Main2Activity.this, "fadein-to-fadeout");
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
-        singUpBtn = findViewById(R.id.singUpBtn);
+        binding= DataBindingUtil.setContentView(this,R.layout.activity_main2);
+        /*singUpBtn = findViewById(R.id.singUpBtn);
         nameET = findViewById(R.id.nameSingUpET);
         emailET = findViewById(R.id.emailSingUpET);
         passwordET = findViewById(R.id.passwordSingUpET);
         repasswordET = findViewById(R.id.reTypepasswordSingUpET);
-        cellNumberET = findViewById(R.id.cellnumberSingUpET);
+        cellNumberET = findViewById(R.id.cellnumberSingUpET);*/
 
-        singUpBtn.setOnClickListener(new View.OnClickListener() {
+        binding.singUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                name = nameET.getText().toString();
-                email = emailET.getText().toString();
-                password = passwordET.getText().toString().trim();
-                reTypePassword = repasswordET.getText().toString().trim();
-                cellNumber = cellNumberET.getText().toString();
+                name = binding.nameSingUpET.getText().toString();
+                email = binding.emailSingUpET.getText().toString();
+                password = binding.passwordSingUpET.getText().toString().trim();
+                reTypePassword = binding.reTypepasswordSingUpET.getText().toString().trim();
+                cellNumber = binding.cellnumberSingUpET.getText().toString();
 
                 if (name.isEmpty()) {
                     Toast.makeText(Main2Activity.this, "Please enter your name.", Toast.LENGTH_SHORT).show();
@@ -75,6 +77,7 @@ public class Main2Activity extends AppCompatActivity {
             }
         });
     }
+
     private void createAccount(final String email, final String password) {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -86,11 +89,17 @@ public class Main2Activity extends AppCompatActivity {
                             uid = task.getResult().getUser().getUid();
                             saveSingUpData(new MainData(uid, name, email, Double.valueOf(cellNumber)));
                         } else {
-                            Toast.makeText(Main2Activity.this, "Account not create successfully.", Toast.LENGTH_SHORT).show();
+                            if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                                Toast.makeText(Main2Activity.this, "User is already register.", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(Main2Activity.this, "Error :"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+
                         }
                     }
                 });
     }
+
     private void saveSingUpData(MainData mainData) {
         // Write to the database
         database = FirebaseDatabase.getInstance();
@@ -101,11 +110,9 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(Main2Activity.this, "User info saved successfully.", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(Main2Activity.this,ShowActivity.class));
-                    CustomIntent.customType(Main2Activity.this,"left-to-right");
-                } else {
-                    Toast.makeText(Main2Activity.this, "User info not save successfully.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Main2Activity.this, "Register is successful.", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(Main2Activity.this, ShowActivity.class));
+                    CustomIntent.customType(Main2Activity.this, "left-to-right");
                 }
             }
         });

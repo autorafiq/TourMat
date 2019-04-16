@@ -1,6 +1,7 @@
 package com.example.tour;
 
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tour.Data.MainData;
+import com.example.tour.databinding.ActivitySingInBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -20,52 +22,43 @@ import com.google.firebase.auth.FirebaseUser;
 import maes.tech.intentanim.CustomIntent;
 
 public class SingInActivity extends AppCompatActivity {
-    private TextView singUp, forgotPassword;
-    private EditText emailET, passwordET;
+    private ActivitySingInBinding binding;
     private String email, password;
-    private Button singInBtn;
     private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sing_in);
-        singUp = findViewById(R.id.singUpTV);
-        emailET = findViewById(R.id.emailET);
-        passwordET = findViewById(R.id.passwordET);
-        forgotPassword = findViewById(R.id.forgotPasswordTV);
-        singInBtn = findViewById(R.id.singInBtn);
-
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_sing_in);
         mAuth = FirebaseAuth.getInstance();
 
-
-        singUp.setOnClickListener(new View.OnClickListener() {
+        binding.singUpTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SingInActivity.this, Main2Activity.class));
-                CustomIntent.customType(SingInActivity.this,"fadein-to-fadeout");
+                CustomIntent.customType(SingInActivity.this, "fadein-to-fadeout");
             }
         });
-        forgotPassword.setOnClickListener(new View.OnClickListener() {
+        binding.forgotPasswordTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(SingInActivity.this, "Forget Password", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(SingInActivity.this, ForgotPasswordActivity.class));
-                CustomIntent.customType(SingInActivity.this,"up-to-bottom");
+                CustomIntent.customType(SingInActivity.this, "up-to-bottom");
             }
         });
 
-        singInBtn.setOnClickListener(new View.OnClickListener() {
+        binding.singInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                email = emailET.getText().toString();
-                password = passwordET.getText().toString().trim();
-                login(new MainData(email, password));
+                email = binding.emailET.getText().toString();
+                password = binding.passwordET.getText().toString().trim();
+                logIn(new MainData(email, password));
             }
         });
     }
 
-    private void login(MainData mainData) {
+    private void logIn(MainData mainData) {
 
         if (mainData.getEmail().isEmpty() || !mainData.getEmail().contains("@") || !mainData.getEmail().endsWith(".com")) {
             Toast.makeText(SingInActivity.this, "Please enter a valied email addrss.", Toast.LENGTH_SHORT).show();
@@ -76,25 +69,19 @@ public class SingInActivity extends AppCompatActivity {
         } else {
             //sing in code
             // Initialize Firebase Auth
-
             mAuth.signInWithEmailAndPassword(mainData.getEmail(), mainData.getPassword()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         //Toast.makeText(SingInActivity.this, "Login successful.", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(SingInActivity.this, ShowActivity.class));
-                        CustomIntent.customType(SingInActivity.this,"left-to-right");
+                        CustomIntent.customType(SingInActivity.this, "left-to-right");
 
                     } else {
                         Toast.makeText(SingInActivity.this, "Please SingUp.", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
-
-
-            //Toast.makeText(this, "You enter: "+mainData.getEmail()+"/"+mainData.getPassword(), Toast.LENGTH_SHORT).show();
         }
     }
-
-
 }

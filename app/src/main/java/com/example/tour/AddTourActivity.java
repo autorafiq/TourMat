@@ -3,6 +3,7 @@ package com.example.tour;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.tour.Data.Data;
 import com.example.tour.Data.MainData;
+import com.example.tour.databinding.ActivityAddTourBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,10 +34,11 @@ import java.util.Locale;
 import maes.tech.intentanim.CustomIntent;
 
 public class AddTourActivity extends AppCompatActivity {
+    private ActivityAddTourBinding binding;
+    private SimpleDateFormat dateSDF = new SimpleDateFormat("dd/MM/yyyy");
     private EditText tourNameET, tourDescriptionET, startDateET, endDateET, budgetET;
-    //    private EditText testET;
     private Button saveTourInfoBtn;
-    private DatePickerDialogFragment mDatePickerDialogFragment;
+
     private String uid, tourName, tourDescription;
     private long startDate, endDate;
     private double budget;
@@ -48,41 +51,28 @@ public class AddTourActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_tour);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_add_tour);
         mAuth = FirebaseAuth.getInstance();
-        mDatePickerDialogFragment = new DatePickerDialogFragment();
-        //init
-        tourNameET = findViewById(R.id.tourNameET);
-        tourDescriptionET = findViewById(R.id.tourDescriptionET);
-        startDateET = findViewById(R.id.startDateAddTourET);
-        endDateET = findViewById(R.id.endDateAddTourET);
-        budgetET = findViewById(R.id.tourBudgetET);
-        saveTourInfoBtn = findViewById(R.id.saveTourInfoAddTourBtn);
-//        testET = findViewById(R.id.testET);
-        startDateET.setOnClickListener(new View.OnClickListener() {
+
+        binding.startDateAddTourET.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDatePickerDialogFragment.setFlag(mDatePickerDialogFragment.FLAG_START_DATE);
-                mDatePickerDialogFragment.show(getSupportFragmentManager(), "datepicker");
-                startDateET.setText(mDatePickerDialogFragment.getStartDate());
+                pickStartDate();
             }
         });
-        endDateET.setOnClickListener(new View.OnClickListener() {
+        binding.endDateAddTourET.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDatePickerDialogFragment.setFlag(mDatePickerDialogFragment.FLAG_END_DATE);
-                mDatePickerDialogFragment.show(getSupportFragmentManager(), "datepicker");
-                endDateET.setText(mDatePickerDialogFragment.getEndDate());
+                pickEndDate();
             }
         });
-        saveTourInfoBtn.setOnClickListener(new View.OnClickListener() {
+        binding.saveTourInfoAddTourBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tourName = tourNameET.getText().toString();
-                tourDescription = tourDescriptionET.getText().toString();
-                budget = Double.valueOf(budgetET.getText().toString());
-                startDate = mDatePickerDialogFragment.getStartDateLongValue();
-                endDate = mDatePickerDialogFragment.getEndDateLongValue();
+                tourName = binding.tourNameET.getText().toString();
+                tourDescription = binding.tourDescriptionET.getText().toString();
+                budget = Double.valueOf(binding.tourBudgetET.getText().toString());
+
                 if (tourName.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Please enter your tour name.", Toast.LENGTH_SHORT).show();
                 } else if (tourDescription.isEmpty()) {
@@ -96,6 +86,56 @@ public class AddTourActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void pickEndDate() {
+        DatePickerDialog.OnDateSetListener dateSetListener1 = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                String selectedDate1 = day + "/" + month + "/" + year;
+                Date date1 = new Date();
+                try {
+                    date1 = dateSDF.parse(selectedDate1);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                endDate = date1.getTime();
+                binding.endDateAddTourET.setText(selectedDate1);
+
+            }
+        };
+        Calendar calendar1 = Calendar.getInstance();
+        int year = calendar1.get(Calendar.YEAR);
+        int month = calendar1.get(Calendar.MONTH);
+        int day = calendar1.get(Calendar.DAY_OF_MONTH);
+        DatePickerDialog datePickerDialog1 = new DatePickerDialog(AddTourActivity.this, dateSetListener1, year, month, day);
+        datePickerDialog1.show();
+    }
+
+    private void pickStartDate() {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                String selectedDate = day + "/" + month + "/" + year;
+                Date date = new Date();
+                try {
+                    date = dateSDF.parse(selectedDate);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                startDate = date.getTime();
+                binding.startDateAddTourET.setText(selectedDate);
+
+            }
+        };
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(AddTourActivity.this, dateSetListener, year, month, day);
+        datePickerDialog.show();
     }
 
     private void saveTourInfo(Data data) {

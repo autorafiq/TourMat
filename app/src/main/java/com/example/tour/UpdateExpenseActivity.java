@@ -26,10 +26,12 @@ import java.util.List;
 import maes.tech.intentanim.CustomIntent;
 
 public class UpdateExpenseActivity extends AppCompatActivity {
-    private String eventId, expenseId;
-    ActivityUpdateExpenseBinding binding;
+    private String eventId, expenseId, userId;
+    private ActivityUpdateExpenseBinding binding;
     private DatabaseReference databaseReference;
     private FirebaseAuth mAuth;
+    private double budget, remainBudget, valueOfCostTaken;
+
 
 
 
@@ -39,17 +41,21 @@ public class UpdateExpenseActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_update_expense);
         eventId = getIntent().getStringExtra("eventId").toString();
         expenseId = getIntent().getStringExtra("expenseId").toString();
+        budget = getIntent().getDoubleExtra("budget", 0.0);
+
         mAuth = FirebaseAuth.getInstance();
 
-        String userId = mAuth.getCurrentUser().getUid();
+        userId = mAuth.getCurrentUser().getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference("tourUser").child(userId).child("event").child(eventId).child("expenses").child(expenseId);
         //Toast.makeText(this, "" + eventId + "/Expense: " + expenseId, Toast.LENGTH_SHORT).show();
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if ((dataSnapshot.exists())) {
                     binding.updateTourExpenseDescriptionET.setText(dataSnapshot.child("expenseDescription").getValue().toString());
                     binding.updateTourCostET.setText(dataSnapshot.child("tourCost").getValue().toString());
+                    valueOfCostTaken = Double.parseDouble(dataSnapshot.child("tourCost").getValue().toString());
                 }
             }
 
@@ -69,25 +75,38 @@ public class UpdateExpenseActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        getRemainingBalance();
         binding.updateSaveTourCostBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TourExpense tourExpense = new TourExpense(binding.updateTourExpenseDescriptionET.getText().toString(), binding.updateTourCostET.getText().toString());
-                tourExpense.setCostId(expenseId);
-                databaseReference.setValue(tourExpense).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()){
-                            Toast.makeText(getApplicationContext(), "Data updated", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), ExpenseShowActivity.class);
-                            intent.putExtra("eventId", eventId);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-                            CustomIntent.customType(UpdateExpenseActivity.this,"right-to-left");
-                            finish();
+                String valueOfCost = binding.updateTourCostET.getText().toString();
+                //Toast.makeText(UpdateExpenseActivity.this, ""+valueOfCost, Toast.LENGTH_SHORT).show();
+
+                double value=remainBudget+valueOfCostTaken;
+                if (value == Double.parseDouble(valueOfCost) || value > Double.parseDouble(valueOfCost)) {
+                    TourExpense tourExpense = new TourExpense(binding.updateTourExpenseDescriptionET.getText().toString().trim(),valueOfCost );
+                    tourExpense.setCostId(expenseId);
+                    databaseReference.setValue(tourExpense).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(getApplicationContext(), "Data updated", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), ExpenseShowActivity.class);
+                                intent.putExtra("eventId", eventId);
+                                intent.putExtra("budget", budget);
+
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                                CustomIntent.customType(UpdateExpenseActivity.this, "right-to-left");
+                                finish();
+                            }
                         }
-                    }
-                });
+                    });
+                }else {
+
+                    Toast.makeText(UpdateExpenseActivity.this, "You can spend only "+value+"", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }
@@ -95,7 +114,21 @@ public class UpdateExpenseActivity extends AppCompatActivity {
     @Override
     public void finish() {
         super.finish();
-        CustomIntent.customType(UpdateExpenseActivity.this,"right-to-left");
+        CustomIntent.customType(UpdateExpenseActivity.this, "right-to-left");
+    }
+    private void getRemainingBalance() {
+        DatabaseReference databaseReferenc1 = FirebaseDatabase.getInstance().getReference("tourUser").child(userId).child("event").child(eventId);
+        databaseReferenc1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                remainBudget=Double.parseDouble(dataSnapshot.child("remainBudget").getValue().toString().trim());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 }

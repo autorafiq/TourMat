@@ -1,99 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:background="@color/back"
-android:gravity="center_horizontal|center_vertical"
-android:orientation="vertical"
-android:padding="16dp"
-tools:context=".SingInActivity">
-
-    <EditText
-        android:id="@+id/emailET"
+<layout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:background="#111111"
-
-        android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
-        android:hint="E-mail address"
-        android:inputType="textEmailAddress"
+        android:layout_height="match_parent"
+        android:background="@color/back"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="vertical"
         android:padding="16dp"
-        android:singleLine="true"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textColorHint="@color/white" />
+        tools:context=".SingInActivity">
 
-    <EditText
-        android:id="@+id/passwordET"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:background="#111111"
-        android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:padding="16dp"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textColorHint="@color/white" />
+        <EditText
+            android:id="@+id/emailET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="#111111"
 
-    <Button
-        android:id="@+id/singInBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="25dp"
-        android:background="@color/yellow"
-        android:padding="16dp"
-        android:text="Sing In"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="20dp" />
+            android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
+            android:hint="E-mail address"
+            android:inputType="textEmailAddress"
+            android:padding="16dp"
+            android:singleLine="true"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textColorHint="@color/white" />
 
-    <TextView
-        android:id="@+id/forgotPasswordTV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="Forgot Password?"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="15sp" />
+        <EditText
+            android:id="@+id/passwordET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="#111111"
+            android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="16dp"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textColorHint="@color/white" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/white"></View>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp">
+        <Button
+            android:id="@+id/singInBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:background="@color/yellow"
+            android:padding="16dp"
+            android:text="Sing In"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
 
         <TextView
-
-            android:layout_width="0dp"
+            android:id="@+id/forgotPasswordTV"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight=".5"
-            android:gravity="end"
             android:padding="10dp"
-            android:text=" are you New here?"
+            android:text="Forgot Password?"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/singUpTV"
-            android:layout_width="0dp"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/white"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight=".5"
-            android:padding="10dp"
-            android:text="Sing Up"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="15sp" />
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:gravity="end"
+                android:padding="10dp"
+                android:text=" are you New here?"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/singUpTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:padding="10dp"
+                android:text="Sing Up"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</layout>

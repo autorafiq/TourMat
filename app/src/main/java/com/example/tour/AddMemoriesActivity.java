@@ -49,6 +49,7 @@ public class AddMemoriesActivity extends AppCompatActivity {
     private StorageTask storageTask;
     private String imageName;
 
+
     @Override
     public void finish() {
         super.finish();
@@ -64,7 +65,7 @@ public class AddMemoriesActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         storage = FirebaseStorage.getInstance();
         eventId = getIntent().getStringExtra("tourUid");
-        //Toast.makeText(this, ""+eventId, Toast.LENGTH_SHORT).show();
+
 
         binding.imageIV.setOnClickListener(new View.OnClickListener() {
             @Override

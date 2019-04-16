@@ -1,123 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/back"
-    android:gravity="center_horizontal|center_vertical"
-    android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".AddTourActivity">
-<ImageView
-    android:layout_width="50dp"
-    android:layout_height="50dp"
-    android:src="@drawable/ic_mustang_6_logo_svg_vector"
-   
-    android:layout_marginBottom="10dp"/>
-    <EditText
-        android:id="@+id/tourNameET"
-        android:inputType="text"
+<layout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:background="@color/editTextBackground"
-        android:drawableLeft="@drawable/ic_directions_run_black_24dp"
-        android:hint="Enter tour name here"
+        android:layout_height="match_parent"
+        android:background="@color/back"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="vertical"
         android:padding="16dp"
-        android:singleLine="true"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textColorHint="@color/white" />
+        tools:context=".AddTourActivity">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_mustang_6_logo_svg_vector"
 
-    <EditText
-        android:id="@+id/tourDescriptionET"
-        android:inputType="text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:background="@color/editTextBackground"
-        android:drawableLeft="@drawable/ic_wb_sunny_black_24dp"
-        android:hint="Tour Description"
-        android:padding="16dp"
-        android:singleLine="true"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textColorHint="@color/white" />
+            android:layout_marginBottom="10dp"/>
+        <EditText
+            android:id="@+id/tourNameET"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/editTextBackground"
+            android:drawableLeft="@drawable/ic_directions_run_black_24dp"
+            android:hint="Enter tour name here"
+            android:padding="16dp"
+            android:singleLine="true"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textColorHint="@color/white" />
 
-    <EditText
-        android:id="@+id/startDateAddTourET"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:background="@color/editTextBackground"
-        android:drawableLeft="@drawable/ic_date_range_black_24dp"
-        android:focusable="false"
-        android:hint="Tour Start Date"
-        android:inputType="text"
-        android:padding="16dp"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textColorHint="@color/white" />
+        <EditText
+            android:id="@+id/tourDescriptionET"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/editTextBackground"
+            android:drawableLeft="@drawable/ic_wb_sunny_black_24dp"
+            android:hint="Tour Description"
+            android:padding="16dp"
+            android:singleLine="true"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textColorHint="@color/white" />
 
-    <EditText
-        android:id="@+id/endDateAddTourET"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:background="@color/editTextBackground"
-        android:drawableLeft="@drawable/ic_date_range_black_24dp"
-        android:focusable="false"
-        android:hint="Tour End Date"
-        android:inputType="text"
-        android:padding="16dp"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textColorHint="@color/white" />
+        <EditText
+            android:id="@+id/startDateAddTourET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/editTextBackground"
+            android:drawableLeft="@drawable/ic_date_range_black_24dp"
+            android:focusable="false"
+            android:hint="Tour Start Date"
+            android:inputType="text"
+            android:padding="16dp"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textColorHint="@color/white" />
 
-    <EditText
-        android:id="@+id/tourBudgetET"
-        android:inputType="numberDecimal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:background="@color/editTextBackground"
-        android:drawableLeft="@drawable/ic_attach_money_black_24dp"
-        android:hint="Budget"
-        android:padding="16dp"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textColorHint="@color/white" />
+        <EditText
+            android:id="@+id/endDateAddTourET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/editTextBackground"
+            android:drawableLeft="@drawable/ic_date_range_black_24dp"
+            android:focusable="false"
+            android:hint="Tour End Date"
+            android:inputType="text"
+            android:padding="16dp"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textColorHint="@color/white" />
 
-    <Button
-        android:id="@+id/saveTourInfoAddTourBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="25dp"
-        android:background="#eacc20"
-        android:padding="16dp"
-        android:text="Save Tour Info"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="20dp" />
+        <EditText
+            android:id="@+id/tourBudgetET"
+            android:inputType="numberDecimal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@color/editTextBackground"
+            android:drawableLeft="@drawable/ic_attach_money_black_24dp"
+            android:hint="Budget"
+            android:padding="16dp"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textColorHint="@color/white" />
 
-    <TextView
+        <Button
+            android:id="@+id/saveTourInfoAddTourBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:background="#eacc20"
+            android:padding="16dp"
+            android:text="Save Tour Info"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="You are about to save about your tour."
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="15sp" />
+        <TextView
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/white"></View>
-    <!--<EditText
-        android:id="@+id/testET"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="You are about to save about your tour."
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
 
-</LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/white"></View>
+        <!--<EditText
+            android:id="@+id/testET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />-->
+
+    </LinearLayout>
+</layout>

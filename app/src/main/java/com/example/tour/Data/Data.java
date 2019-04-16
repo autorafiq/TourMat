@@ -3,7 +3,7 @@ package com.example.tour.Data;
 public class Data {
     private String tourName, tourDescription;
     private long startDate, endDate;
-    private double budget;
+    private double budget, remainBudget = 0.0;
     private String tourUid;
 
     public Data() {
@@ -15,8 +15,9 @@ public class Data {
         this.startDate = startDate;
         this.endDate = endDate;
         this.budget = budget;
-    }
+        this.remainBudget=budget;
 
+    }
 
 
     public String getTourName() {
@@ -37,6 +38,14 @@ public class Data {
 
     public double getBudget() {
         return budget;
+    }
+
+    public double getRemainBudget() {
+        return remainBudget;
+    }
+
+    public void setRemainBudget(double remainBudget) {
+        this.remainBudget = remainBudget;
     }
 
     public String getTourUid() {

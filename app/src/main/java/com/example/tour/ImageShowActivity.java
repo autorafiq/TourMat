@@ -28,7 +28,7 @@ import java.util.List;
 import maes.tech.intentanim.CustomIntent;
 
 public class ImageShowActivity extends AppCompatActivity {
-    ActivityImageShowBinding binding;
+    private ActivityImageShowBinding binding;
     private ImageAdapter imageAdapter;
     private List<Image> imageList;
     private DatabaseReference databaseReference;
@@ -55,7 +55,7 @@ public class ImageShowActivity extends AppCompatActivity {
         String userId = mAuth.getCurrentUser().getUid();
         eventId = getIntent().getStringExtra("eventId");
         databaseReference = FirebaseDatabase.getInstance().getReference("tourUser").child(userId).child("event").child(eventId).child("memories");
-        databaseReference.orderByChild("imageUri").addValueEventListener(new ValueEventListener() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot != null) {

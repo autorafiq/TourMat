@@ -33,7 +33,7 @@ import maes.tech.intentanim.CustomIntent;
 
 public class EditTourActivity extends AppCompatActivity {
     ActivityEditTourBinding binding;
-    private DatePickerDialogFragment datePickerDialogFragment;
+
     private String tourId;
     private FirebaseAuth mAuth;
     // Write to the database
@@ -49,7 +49,7 @@ public class EditTourActivity extends AppCompatActivity {
     @Override
     public void finish() {
         super.finish();
-        CustomIntent.customType(EditTourActivity.this,"right-to-left");
+        CustomIntent.customType(EditTourActivity.this, "right-to-left");
     }
 
     @Override
@@ -68,58 +68,64 @@ public class EditTourActivity extends AppCompatActivity {
         binding.editStartDateAddTourET.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        month = month + 1;
-                        String selectedDate = day + "/" + month + "/" + year;
-                        Date date = new Date();
-                        try {
-                            date = dateSDF.parse(selectedDate);
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                        startDate = date.getTime();
-                        binding.editStartDateAddTourET.setText(selectedDate);
-
-                    }
-                };
-                Calendar calendar = Calendar.getInstance();
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog datePickerDialog = new DatePickerDialog(EditTourActivity.this, dateSetListener, year, month, day);
-                datePickerDialog.show();
-
+                pickStartDate();
             }
         });
         binding.editEndDateAddTourET.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatePickerDialog.OnDateSetListener dateSetListener1 = new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        month = month + 1;
-                        String selectedDate1 = day + "/" + month + "/" + year;
-                        Date date1 = new Date();
-                        try {
-                            date1 = dateSDF.parse(selectedDate1);
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                        endDate = date1.getTime();
-                        binding.editEndDateAddTourET.setText(selectedDate1);
-
-                    }
-                };
-                Calendar calendar1 = Calendar.getInstance();
-                int year = calendar1.get(Calendar.YEAR);
-                int month = calendar1.get(Calendar.MONTH);
-                int day = calendar1.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog datePickerDialog1 = new DatePickerDialog(EditTourActivity.this, dateSetListener1, year, month, day);
-                datePickerDialog1.show();
+                pickEndDate();
             }
         });
+    }
+
+    private void pickEndDate() {
+        DatePickerDialog.OnDateSetListener dateSetListener1 = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                String selectedDate1 = day + "/" + month + "/" + year;
+                Date date1 = new Date();
+                try {
+                    date1 = dateSDF.parse(selectedDate1);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                endDate = date1.getTime();
+                binding.editEndDateAddTourET.setText(selectedDate1);
+
+            }
+        };
+        Calendar calendar1 = Calendar.getInstance();
+        int year = calendar1.get(Calendar.YEAR);
+        int month = calendar1.get(Calendar.MONTH);
+        int day = calendar1.get(Calendar.DAY_OF_MONTH);
+        DatePickerDialog datePickerDialog1 = new DatePickerDialog(EditTourActivity.this, dateSetListener1, year, month, day);
+        datePickerDialog1.show();
+    }
+
+    private void pickStartDate() {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                String selectedDate = day + "/" + month + "/" + year;
+                Date date = new Date();
+                try {
+                    date = dateSDF.parse(selectedDate);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                startDate = date.getTime();
+                binding.editStartDateAddTourET.setText(selectedDate);
+            }
+        };
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(EditTourActivity.this, dateSetListener, year, month, day);
+        datePickerDialog.show();
     }
 
     private void getDataFromDB() {
@@ -128,11 +134,10 @@ public class EditTourActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     Data readData = dataSnapshot.getValue(Data.class);
-
                     binding.editTourNameET.setText(readData.getTourName());
                     binding.editTourDescriptionET.setText(readData.getTourDescription());
-                    startDate=readData.getStartDate();
-                    endDate=readData.getEndDate();
+                    startDate = readData.getStartDate();
+                    endDate = readData.getEndDate();
                     binding.editStartDateAddTourET.setText(dateSDF.format(startDate));
                     binding.editEndDateAddTourET.setText(dateSDF.format(endDate));
                     binding.editTourBudgetET.setText(String.valueOf(readData.getBudget()));
@@ -161,12 +166,9 @@ public class EditTourActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Please enter your tour date range.", Toast.LENGTH_SHORT).show();
                 } else {
                     updateEditedData(new Data(tourName, tourDescription, startDate, endDate, budget));
-
                 }
-
             }
         });
-
     }
 
     private void updateEditedData(Data data) {
@@ -180,37 +182,12 @@ public class EditTourActivity extends AppCompatActivity {
         myRef.updateChildren(updateData).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()){
+                if (task.isSuccessful()) {
                     Toast.makeText(EditTourActivity.this, "Tour Info Updated.", Toast.LENGTH_SHORT).show();
-                    CustomIntent.customType(EditTourActivity.this,"left-to-right");
+                    CustomIntent.customType(EditTourActivity.this, "left-to-right");
                     finish();
                 }
             }
         });
     }
-
-
-    /*@Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.editTourNameET:
-                Toast.makeText(this, "you selected Name", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.editTourDescriptionET:
-                Toast.makeText(this, "you selected Des", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.editStartDateAddTourET:
-                Toast.makeText(this, "you selected Start Date", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.editEndDateAddTourET:
-                Toast.makeText(this, "you selected End Date", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.editTourBudgetET:
-                Toast.makeText(this, "you selected Budget", Toast.LENGTH_SHORT).show();
-                break;
-            default:
-                break;
-
-        }
-    }*/
 }

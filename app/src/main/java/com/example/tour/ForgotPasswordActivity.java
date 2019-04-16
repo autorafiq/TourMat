@@ -21,7 +21,7 @@ import maes.tech.intentanim.CustomIntent;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
-    ActivityForgotPasswordBinding binding;
+    private ActivityForgotPasswordBinding binding;
     private String email;
 
     @Override

@@ -35,7 +35,7 @@ import java.util.List;
 import maes.tech.intentanim.CustomIntent;
 
 public class UpdateMemoriesActivity extends AppCompatActivity {
-    ActivityUpdateMemoriesBinding binding;
+    private ActivityUpdateMemoriesBinding binding;
     private String userId, eventId, memoriesId;
     private DatabaseReference databaseReference;
     private FirebaseAuth mAuth;

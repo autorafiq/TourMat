@@ -27,6 +27,7 @@ import com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import maes.tech.intentanim.CustomIntent;
@@ -35,7 +36,7 @@ public class TourRecyclerViewAdapter extends RecyclerView.Adapter<TourRecyclerVi
 
     private Context context;
     private List<Data> dataList;
-    private DatePickerDialogFragment mDatePickerDialogFragment = new DatePickerDialogFragment();
+    private SimpleDateFormat dateSDF = new SimpleDateFormat("dd/MM/yyyy");
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private DatabaseReference userRef;
@@ -57,8 +58,8 @@ public class TourRecyclerViewAdapter extends RecyclerView.Adapter<TourRecyclerVi
         final Data currentData = dataList.get(i);
         viewHolder.binding.tourNameTV.setText(currentData.getTourName());
         viewHolder.binding.tourDescriptionTV.setText(currentData.getTourDescription());
-        viewHolder.binding.startDateTV.setText(mDatePickerDialogFragment.getDateFormate(currentData.getStartDate()));
-        viewHolder.binding.endDateTV.setText(mDatePickerDialogFragment.getDateFormate(currentData.getEndDate()));
+        viewHolder.binding.startDateTV.setText(dateSDF.format(currentData.getStartDate()));
+        viewHolder.binding.endDateTV.setText(dateSDF.format(currentData.getEndDate()));
         viewHolder.binding.budgetTV.setText(String.valueOf(currentData.getBudget()));
         viewHolder.binding.editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +79,7 @@ public class TourRecyclerViewAdapter extends RecyclerView.Adapter<TourRecyclerVi
                 Context context = v.getContext();
                 Intent intent = new Intent(context, AddMemoriesActivity.class);
                 intent.putExtra("tourUid", currentData.getTourUid());
+
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
                 CustomIntent.customType(context, "left-to-right");
@@ -91,6 +93,8 @@ public class TourRecyclerViewAdapter extends RecyclerView.Adapter<TourRecyclerVi
                 Context context = v.getContext();
                 Intent intentA = new Intent(context, AddExpenseActivity.class);
                 intentA.putExtra("tourUidA", currentData.getTourUid());
+                intentA.putExtra("budget", currentData.getBudget());
+                intentA.putExtra("remainBudget", currentData.getRemainBudget());
                 intentA.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intentA);
                 CustomIntent.customType(context, "left-to-right");
