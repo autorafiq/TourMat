@@ -19,6 +19,25 @@ public class Data {
 
     }
 
+    public void setTourName(String tourName) {
+        this.tourName = tourName;
+    }
+
+    public void setTourDescription(String tourDescription) {
+        this.tourDescription = tourDescription;
+    }
+
+    public void setStartDate(long startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(long endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setBudget(double budget) {
+        this.budget = budget;
+    }
 
     public String getTourName() {
         return tourName;

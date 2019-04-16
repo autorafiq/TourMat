@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="4dp"
+        app:cardMaxElevation="8dp"
+        app:contentPadding="3dp">
+
+        <LinearLayout
+            android:id="@+id/layoutId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@color/yellow"
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="vertical"
+            android:paddingLeft="8dp"
+            android:paddingTop="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:text="Tour name :"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:text="Description :"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/searchTourNameTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:paddingLeft="10dp"
+                    android:text="Tour Name"
+                    android:textColor="@color/back"
+                    android:textSize="18sp"
+                    android:textStyle="italic" />
+
+
+                <TextView
+                    android:id="@+id/searchTourDescriptionTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:paddingLeft="10dp"
+                    android:text="Tour description"
+                    android:textColor="@color/back"
+                    android:textSize="18sp"
+                    android:textStyle="italic" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5"
+                    android:text="Start Date"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5"
+                    android:text="End Date"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/searchStartDateTV"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5"
+                    android:paddingLeft="10dp"
+                    android:text="01/01/2020"
+                    android:textColor="@color/back"
+                    android:textSize="18sp"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/searchEndDateTV"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5"
+                    android:paddingLeft="10dp"
+                    android:text="30/01/2020"
+                    android:textColor="@color/back"
+                    android:textSize="18sp"
+                    android:textStyle="italic" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Total Tour Budget"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/searchBudgetTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="10000/-"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="italic" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/editTextBackground"></View>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+</layout>

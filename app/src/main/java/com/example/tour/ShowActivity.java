@@ -48,7 +48,7 @@ public class ShowActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference userRef;
     private TourRecyclerViewAdapter tourRecyclerViewAdapter;
-    private ArrayList<Data> dataList, dataArrayList;
+    private ArrayList<Data> dataList;
     private String user;
 
     private long startDate, endDate;
@@ -62,7 +62,7 @@ public class ShowActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_show);
 
         dataList = new ArrayList<>();
-        dataArrayList = new ArrayList<>();
+
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         user = mAuth.getCurrentUser().getUid();
@@ -87,6 +87,11 @@ public class ShowActivity extends AppCompatActivity {
         binding.searchDateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+            startActivity(new Intent(ShowActivity.this,SearchActivity.class)
+            .putExtra("startDate", startDate)
+                    .putExtra("endDate",endDate)
+                    );
+                CustomIntent.customType(ShowActivity.this, "bottom-to-up");
             }
         });
         binding.recyclerView.setHasFixedSize(true);
