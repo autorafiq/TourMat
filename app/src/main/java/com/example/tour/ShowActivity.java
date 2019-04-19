@@ -209,6 +209,8 @@ public class ShowActivity extends AppCompatActivity {
                 // ...
                 .attachTo(actionButton)
                 .build();
+
+
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -229,8 +231,8 @@ public class ShowActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                /*startActivity(new Intent(ShowActivity.this, AddExpenseActivity.class));
-                CustomIntent.customType(ShowActivity.this,"left-to-right");*/
+                startActivity(new Intent(ShowActivity.this, WeatherActivity.class));
+                CustomIntent.customType(ShowActivity.this,"left-to-right");
             }
         });
         button4.setOnClickListener(new View.OnClickListener() {

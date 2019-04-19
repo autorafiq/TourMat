@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <!--#008577-->
+    <color name="colorPrimary">#111111</color>
+    <color name="colorPrimaryDark">#FCD708</color>
     <color name="colorAccent">#D81B60</color>
 
 
@@ -16,4 +17,7 @@
     <color name="edit">#FF3EA5FF</color>
     <color name="start_date">#292826</color>
     <color name="end_date">#3C1A5B</color>
+    <color name="textColorPrimary">#ffffff</color>
+    <color name="windowBackground">#ffffff</color>
+    <color name="navigationBarcolor">#000000</color>
 </resources>
