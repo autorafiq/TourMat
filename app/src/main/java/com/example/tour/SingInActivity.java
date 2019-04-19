@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -30,6 +32,7 @@ public class SingInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sing_in);
+        final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.milkshake);
         mAuth = FirebaseAuth.getInstance();
 
         binding.singUpTV.setOnClickListener(new View.OnClickListener() {
@@ -48,9 +51,11 @@ public class SingInActivity extends AppCompatActivity {
             }
         });
 
+        binding.singInBtn.setAnimation(myAnim);
         binding.singInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                v.startAnimation(myAnim);
                 email = binding.emailET.getText().toString();
                 password = binding.passwordET.getText().toString().trim();
                 logIn(new MainData(email, password));
