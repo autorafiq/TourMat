@@ -58,6 +58,8 @@
     <string name="budget_demo">10000/-</string>
     <string name="tour_name_demo">Tour Name</string>
     <string name="description_demo">Tour description</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="nearby_api_key">AIzaSyDwTRVd3Z1-ZEP3fy2nW2bC5wOU3aTgS7U</string>
 
 
 </resources>
