@@ -71,12 +71,14 @@ public class ShowActivity extends AppCompatActivity {
         binding.searchStartDateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 pickStartDate();
             }
         });
         binding.searchEndDateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 pickEndDate();
             }
 
@@ -87,12 +89,19 @@ public class ShowActivity extends AppCompatActivity {
         binding.searchDateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            startActivity(new Intent(ShowActivity.this,SearchActivity.class)
-            .putExtra("startDate", startDate)
-                    .putExtra("endDate",endDate)
+                if (startDate!=0&&endDate!=0){
+                    startActivity(new Intent(ShowActivity.this,SearchActivity.class)
+                            .putExtra("startDate", startDate)
+                            .putExtra("endDate",endDate)
                     );
-                CustomIntent.customType(ShowActivity.this, "bottom-to-up");
-            }
+                    CustomIntent.customType(ShowActivity.this, "bottom-to-up");
+                }else if (startDate<=0){
+                    Toast.makeText(ShowActivity.this, "Please enter start date.", Toast.LENGTH_SHORT).show();
+                }else if (endDate<=0){
+                    Toast.makeText(ShowActivity.this, "Please enter end date.", Toast.LENGTH_SHORT).show();
+                }
+                }
+
         });
         binding.recyclerView.setHasFixedSize(true);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));

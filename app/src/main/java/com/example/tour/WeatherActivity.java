@@ -13,10 +13,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tour.Adapter.ViewPagerAdapter;
 import com.example.tour.Common.Common;
+import com.example.tour.Model.Weather;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -34,7 +36,7 @@ import java.util.List;
 import maes.tech.intentanim.CustomIntent;
 
 public class WeatherActivity extends AppCompatActivity {
-    private android.support.v7.widget.Toolbar toolbar;
+    private TextView backTV;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private FusedLocationProviderClient fusedLocationProviderClient;
@@ -44,22 +46,22 @@ public class WeatherActivity extends AppCompatActivity {
 
     private CoordinatorLayout coordinatorLayout;
 
-    @Override
-    public void finish() {
-        CustomIntent.customType(WeatherActivity.this,"right-to-left");
-        super.finish();
-    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.root_view);
-
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        backTV=(TextView)findViewById(R.id.weatherBackTV);
+        backTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+                CustomIntent.customType(WeatherActivity.this,"right-to-left");
+                finish();
+            }
+        });
         //Request permission
         Dexter.withActivity(this).withPermissions(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
                 .withListener(new MultiplePermissionsListener() {

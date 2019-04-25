@@ -30,7 +30,7 @@ import retrofit2.Retrofit;
 public class ForecastFragment extends Fragment {
     private CompositeDisposable compositeDisposable;
     private IOpenWeatherMap mService;
-    private TextView txt_city_name, txt_geo_coord;
+    private TextView txt_city_name;
     private RecyclerView recycler_forecast;
 
     static ForecastFragment instance;
@@ -55,10 +55,10 @@ public class ForecastFragment extends Fragment {
                              Bundle savedInstanceState) {
         View itemView = inflater.inflate(R.layout.fragment_forecast, container, false);
         txt_city_name = (TextView) itemView.findViewById(R.id.txt_city_name_id);
-        txt_geo_coord = (TextView) itemView.findViewById(R.id.txt_geo_coord_id);
+
         recycler_forecast = (RecyclerView) itemView.findViewById(R.id.recycler_forecast);
         recycler_forecast.setHasFixedSize(true);
-        recycler_forecast.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recycler_forecast.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         getForecastWeatherInformation();
         return itemView;
     }
@@ -91,7 +91,7 @@ public class ForecastFragment extends Fragment {
 
     private void displayForecastWeather(WeatherForecastResualt weatherForecastResualt) {
         txt_city_name.setText(new StringBuilder(weatherForecastResualt.city.name));
-        txt_geo_coord.setText(new StringBuilder(weatherForecastResualt.city.coord.toString()));
+
         WeatherForecastAdapter adapter = new WeatherForecastAdapter(getContext(),weatherForecastResualt);
         recycler_forecast.setAdapter(adapter);
     }

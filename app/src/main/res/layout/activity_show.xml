@@ -39,7 +39,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight=".50"
                     android:text="@string/start_date"
-                    android:textColor="@color/start_date" />
+                    android:textColor="@color/start_date"
+                    android:drawableLeft="@drawable/ic_date_range_black_24dp"
+
+                    />
 
                 <Button
                     android:id="@+id/searchEndDateBtn"
@@ -48,17 +51,22 @@
                     android:layout_height="wrap_content"
                     android:layout_weight=".50"
                     android:text="@string/end_date"
-                    android:textColor="@color/end_date" />
+                    android:textColor="@color/end_date"
+                    android:drawableLeft="@drawable/ic_date_range_black_24dp"/>
 
                 <Button
                     android:id="@+id/searchDateBtn"
                     style="?android:attr/borderlessButtonStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight=".50"
-                    android:text="@string/search"
+                    android:layout_weight=".25"
+                   android:drawablePadding="110dp"
                     android:background="@drawable/round"
-                    android:textColor="#1c1259" />
+                    android:textColor="#1c1259"
+                   android:text="@string/search"
+                    android:paddingLeft="23dp"
+                    android:drawableLeft="@drawable/ic_search_black_24dp"
+                    />
 
 
             </LinearLayout>

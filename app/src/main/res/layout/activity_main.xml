@@ -10,8 +10,6 @@
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".MainActivity">
-
-
     <TextView
         android:id="@+id/forgotPasswordTV"
         android:layout_width="match_parent"
@@ -20,9 +18,23 @@
         android:text="@string/welcome"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="25sp" />
+        android:textSize="30sp" />
+<com.airbnb.lottie.LottieAnimationView
+    android:id="@+id/loadingA"
+    android:paddingTop="2dp"
+    android:layout_width="250dp"
+    android:layout_height="250dp"
+    app:lottie_fileName="loading.json"
+    app:lottie_loop="true"
+    app:lottie_autoPlay="true"
+    android:scaleType="centerCrop"
+    app:lottie_scale="0.1"
+    android:paddingBottom="1dp"
+    />
+
 
     <View
+        android:paddingTop=".5dp"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@color/white"></View>
