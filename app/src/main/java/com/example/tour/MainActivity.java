@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 startCheekAnimation();
                 goTo();
             }
-        },SPLASH_TIME_OUT);
+        }, SPLASH_TIME_OUT);
 
 
     }
@@ -54,10 +54,11 @@ public class MainActivity extends AppCompatActivity {
     private void goTo() {
         if (user != null) {
             startActivity(new Intent(MainActivity.this, ShowActivity.class));
-            CustomIntent.customType(MainActivity.this,"left-to-right");
+            CustomIntent.customType(MainActivity.this, "left-to-right");
         } else {
             startActivity(new Intent(MainActivity.this, SingInActivity.class));
-            CustomIntent.customType(MainActivity.this,"right-to-left");
+            //startActivity(new Intent(MainActivity.this,NearbyPlaceList.class));
+            CustomIntent.customType(MainActivity.this, "right-to-left");
         }
     }
     private void startCheekAnimation() {

@@ -232,8 +232,8 @@ public class ShowActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*startActivity(new Intent(ShowActivity.this, AddMemoriesActivity.class));
-                CustomIntent.customType(ShowActivity.this,"left-to-right");*/
+                startActivity(new Intent(ShowActivity.this, NearbyPlaceList.class));
+                CustomIntent.customType(ShowActivity.this,"left-to-right");
             }
         });
         button3.setOnClickListener(new View.OnClickListener() {

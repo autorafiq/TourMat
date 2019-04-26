@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NearbyPlaceList"
+    android:orientation="vertical"
+    android:layout_marginTop="18dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:layout_marginRight="5dp"
+            android:onClick="goToAtm"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="ATM"
+            android:background="@color/yellow"/>
+        <Button
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:layout_marginLeft="5dp"
+            android:onClick="goToSchool"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="School"
+            android:background="@color/yellow"/>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:layout_marginRight="5dp"
+            android:onClick="goToTrain"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Train"
+            android:background="@color/yellow"/>
+        <Button
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:layout_marginLeft="5dp"
+            android:onClick="goToPolice"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Police"
+            android:background="@color/yellow"/>
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:layout_marginRight="5dp"
+            android:onClick="goToMosque"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Mosque"
+            android:background="@color/yellow"/>
+        <Button
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:layout_marginLeft="5dp"
+            android:onClick="goToHospital"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Hospital"
+            android:background="@color/yellow"/>
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:layout_marginRight="5dp"
+            android:onClick="goToAirport"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Airport"
+            android:background="@color/yellow"/>
+        <Button
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:layout_marginLeft="5dp"
+            android:onClick="goToCafe"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Cafe"
+            android:background="@color/yellow"/>
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:layout_marginRight="5dp"
+            android:onClick="goToRestaurant"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Restaurant"
+            android:background="@color/yellow"/>
+        <Button
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:layout_marginLeft="5dp"
+            android:onClick="goToBank"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Bank"
+            android:background="@color/yellow"/>
+
+
+
+    </LinearLayout>
+    <Button
+        android:onClick="goBack"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round"
+        android:drawableLeft="@drawable/ic_arrow_back_black_24dp"
+        android:paddingLeft="35dp"/>
+
+</LinearLayout>

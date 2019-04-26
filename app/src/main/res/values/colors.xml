@@ -20,6 +20,10 @@
     <color name="textColorPrimary">#ffffff</color>
     <color name="windowBackground">#ffffff</color>
     <color name="navigationBarcolor">#000000</color>
+
     <color name="weather_bg">#3F3E3B</color>
     <color name="tab_text_color">#fff</color>
+
+    <color name="nearbyPlace">#eeeeee</color>
+
 </resources>

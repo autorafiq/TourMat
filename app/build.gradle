@@ -9,10 +9,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
         dataBinding {
             enabled = true
         }
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -22,6 +24,7 @@ android {
     }
 
 }
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -42,8 +45,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:16.2.1'
     implementation 'com.google.firebase:firebase-database:16.1.0'
     implementation 'com.google.firebase:firebase-storage:16.1.0'
-
-
 
 
     implementation 'com.github.hajiyevelnur92:intentanimation:1.0'
@@ -68,4 +69,3 @@ dependencies {
 
 }
 apply plugin: 'com.google.gms.google-services'
-
